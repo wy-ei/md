@@ -4,18 +4,34 @@
 	<meta charset="UTF-8">
 	<title>markdown</title>
 	<link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" type="text/css" href="css/markdown.css">
 </head>
 <body>
 	<section id='edit-window' class='edit-window'>
 		<section class='tool-bar'>
 			<ul>
-				<li>预览</li>
-				<li>全屏</li>
+				<li id='preview'>预览</li>
+				<li id='edit-full-screen'>全屏</li>
+				<li id='exit-edit-full-screen'>退出全屏</li>
 			</ul>
 		</section>
-		<textarea id='edit-box'></textarea>
+		<section class='edit-box'>
+			<textarea id='edit-area' placeholder='在此输入'></textarea>
+		</section>
+		
 	</section>
-	<section id='view-window' class='view-window'>
+	<section class='view-window'>
+		<section class='tool-bar view-tool-bar'>
+			<ul>
+				<li id='print'>打印</li>
+				<li id='view-exit-full-screen'>退出全屏</li>
+			</ul>
+		</section>
+		<section id='view-content' class='content'>
+
+		</section>
 	</section>
+	<script type="text/javascript" src='lib/marked.min.js'></script>
+	<script type="text/javascript" src='js/app.js'></script>
 </body>
 </html>

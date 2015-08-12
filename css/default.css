@@ -1,39 +1,163 @@
 body,section{padding: 0;margin: 0;}
 
+html{
+	height: 100%;
+}
+
 body{
 	width: 100%;
 	height: 100%;
-	overflow: auto;
+	overflow: hidden;
+	font-family: "calluna-sans",Helvetica,Hiragino Sans GB,Microsoft JhengHei,WenQuanYi Micro Hei,sans-serif;
+}
+
+.view-window{
+	margin-left: 50%;
+	overflow-x: hidden;
+	overflow-y: auto; 
+	height: 100%;
+}
+
+.view-tool-bar{
+	display: none;
 }
 
 .edit-window{
 	float: left;
 	width: 50%;
 	height: 100%;
-	overflow: auto;
+	overflow: hidden;
+	border-right: 1px solid #333;
 }
 
-.view-window{
-	float: left;
-	background-clip: #333;
-	height: 100%;
-	width: 50%;
-	overflow: auto;
+
+
+#view-content{
+	width: 90%;
+	margin: auto;
 }
 
 .tool-bar{
+	height: 70px;
+	border-bottom: 1px solid #333;
+	width: 90%;
+	margin: auto;
+}
+
+.tool-bar ul{
 	overflow: hidden;
 }
 
+
 .tool-bar li{
+	font-size: 1em;
+	opacity: 0.7;
 	list-style: none;
 	display: inline;
 	float: right;
-	margin-left: 10px;
+	margin-right: 10px;
+	padding: 3px 10px;
+	background-color: #3DBE60;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.edit-box{
+	height: 90%;
+	width: 100%;
 }
 
 .edit-window textarea{
 	width: 100%;
 	height: 100%;
-	overflow: auto;
+	padding: 30px 5%;
+	font-size: 18px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	border: 0;
+	outline: medium;
 }
+
+
+
+/*
+ * edit-full-screen-mode : 编辑时候进入全屏，显示退出全屏，和预览按钮，隐藏全屏按钮
+ * preview-mode：预览，隐藏编辑框，显示预览框，显示预览框上面的工具条
+ * 其他：隐藏预览框上面的工具条，隐藏编辑框工具条中的退出全屏 
+*/
+
+
+
+.edit-full-screen-mode .edit-window{
+	width: 80%;
+	margin: auto;
+	float: none;
+	border-right: 0;
+
+}
+
+.edit-full-screen-mode .view-window{
+	display: none;
+}
+
+
+/*隐藏编辑框中退出全屏按钮*/
+
+#exit-edit-full-screen{
+	display: none;
+}
+
+.edit-full-screen-mode #edit-full-screen{
+	display: none;
+}
+
+
+
+.edit-full-screen-mode .edit-window .edit-preview,.edit-full-screen{
+	display: none;
+}
+
+
+.edit-full-screen-mode .edit-window #exit-edit-full-screen{
+	display: inline;
+}
+
+
+
+.preview-mode .edit-window{
+	display: none;
+}
+
+.preview-mode .view-window{
+	width: 100%;
+	margin: auto;
+	float: none;
+}
+
+.preview-mode .view-window .view-tool-bar{
+	width: 90%;
+	margin: auto;
+	display: block;
+}
+
+
+.print-mode .edit-window{
+	display: none;
+}
+
+.print-mode .view-window{
+	width: 100%;
+	padding: 80px auto 0 auto;
+	float: none;
+	margin: 0;
+	padding: 100px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+}
+
+.print-mode .view-tool-bar{
+	display: none;
+}
+
