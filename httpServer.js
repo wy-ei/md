@@ -1,11 +1,13 @@
+/*
+ * a sample httpServer 
+*/
 var http = require('http');
 var path = require('path');
 var fs = require('fs');
 
-
 http.createServer(function(req,res){
 	var file = path.normalize('.'+req.url);
-	console.log('Trying to server',file);
+	console.log('Trying to serve',file);
 
 	function reporeError(err){
 		console.log(err);
@@ -41,4 +43,6 @@ http.createServer(function(req,res){
 			res.end('Not found');
 		}
 	});
-}).listen(4001);
+}).listen(4000);
+
+console.log('server at port 4000');

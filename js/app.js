@@ -1,5 +1,6 @@
 window.addEventListener('load',function(){
 
+	//handle input event
 	!function(){
 		var inputer = document.getElementById('edit-area');
 		inputer.addEventListener('input',function(){
@@ -8,9 +9,7 @@ window.addEventListener('load',function(){
 		},false);
 	}();
 
-
-
-	// bind full screen button click event
+	// handle full screen button click event
 	!function(){
 		var fullscreen = document.getElementById('edit-full-screen');
 		fullscreen.addEventListener('click',function(){
@@ -19,9 +18,7 @@ window.addEventListener('load',function(){
 		},false);
 	}();
 
-
-
-	// bind preview button click event
+	// handle preview button click event
 	!function(){
 		var preview = document.getElementById('preview');
 		preview.addEventListener('click',function(){
@@ -31,7 +28,7 @@ window.addEventListener('load',function(){
 	}();
 
 
-	// bind exit full screen button click event
+	// handle exit full screen button click event
 	!function(){
 		var preview = document.getElementById('exit-edit-full-screen');
 		preview.addEventListener('click',function(){
@@ -42,7 +39,7 @@ window.addEventListener('load',function(){
 
 
 	
-	// bind  exit full screen preview button click event
+	// handle  exit full screen preview button click event
 	!function(){
 		var preview = document.getElementById('view-exit-full-screen');
 		preview.addEventListener('click',function(){
@@ -56,29 +53,23 @@ window.addEventListener('load',function(){
 
 	
 
-	// bind  print button click event
+	// handle  print button click event
 	!function(){
 		var preview = document.getElementById('print');
 		preview.addEventListener('click',function(){
 			document.body.classList.remove('edit-full-screen-mode');
 			document.body.classList.add('preview-mode');
 			
-			//隐藏工具条
+			//hide tools bar and print
 			var viewToolBar = document.getElementById('view-tool-bar');
-			viewToolBar.style.display = 'none';
-			// viewToolBar.style.opacity = 0;
-			// setTimeout(function(){
-			// 	viewToolBar.style.opacity = '';
-			// 	viewToolBar.classList.remove('none');
-			// 	viewToolBar.classList.add('hover-view');
-			// }, 3000);
+			viewToolBar.style.opacity = 0;
 			window.print();
-			viewToolBar.style.display = 'block';
+			viewToolBar.style.opacity = 1;
 		},false);
 	}();
 
 
-
+	//every 5 sec save the text into localStorage
 	!function(){
 		setInterval(function(){
 			save();
@@ -86,7 +77,10 @@ window.addEventListener('load',function(){
 	}();
 
 
-	//从localStorage里读取出之前编辑过的内容
+	/*
+	*  init data,if the user has data svaed in localStorage ,read it out
+	* if not , load example.md as default
+	*/
 	!function(){
 		var text = window.localStorage.getItem('markdown-text');
 		var view = document.getElementById('view-content');
@@ -113,7 +107,6 @@ window.addEventListener('load',function(){
 			}
 		}	
 	}();
-
 },false);
 
 
@@ -125,9 +118,9 @@ var save = (function(){
 			window.localStorage.setItem('markdown-text',text);
 		}
 	}
-
 	return _save;
 })();
 
 
+//handle close event
 window.addEventListener('unload', save,false);

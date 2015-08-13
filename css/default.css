@@ -19,8 +19,6 @@ body{
 	height: 100%;
 }
 
-
-
 .edit-window{
 	float: left;
 	width: 50%;
@@ -105,15 +103,11 @@ body{
 	outline: medium;
 }
 
-
-
 /*
  * edit-full-screen-mode : 编辑时候进入全屏，显示退出全屏，和预览按钮，隐藏全屏按钮
  * preview-mode：预览，隐藏编辑框，显示预览框，显示预览框上面的工具条
- * 其他：隐藏预览框上面的工具条，隐藏编辑框工具条中的退出全屏 
+ * 其他：隐藏退出全屏按钮 
 */
-
-
 
 .edit-full-screen-mode .edit-window{
 	width: 100%;
