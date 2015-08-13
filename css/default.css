@@ -7,6 +7,7 @@ html{
 body{
 	width: 100%;
 	height: 100%;
+	color: #444;
 	overflow: hidden;
 	font-family: "calluna-sans",Helvetica,Hiragino Sans GB,Microsoft JhengHei,WenQuanYi Micro Hei,sans-serif;
 }
@@ -18,49 +19,71 @@ body{
 	height: 100%;
 }
 
-.view-tool-bar{
-	display: none;
-}
+
 
 .edit-window{
 	float: left;
 	width: 50%;
 	height: 100%;
 	overflow: hidden;
-	border-right: 1px solid #333;
+	border-right: 1px solid #ccc;
+}
+
+.tool-bar h1{
+	display: inline-block;
+	margin-top: 1em;
+}
+
+.tool-bar h1 a{
+	text-decoration: none;
+	color: #999;
+}
+
+.tool-bar h1 a:hover{
+	color: #000;
 }
 
 
-
-#view-content{
+.content{
 	width: 90%;
-	margin: auto;
+	padding:0 5%;
+  	overflow: auto;
+  	height: 90%
 }
 
 .tool-bar{
-	height: 70px;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid #ccc;
 	width: 90%;
 	margin: auto;
-}
-
-.tool-bar ul{
 	overflow: hidden;
 }
 
+.tool-bar ul{
+	margin-top: 1em;
+	display: inline-block;
+	float: right;
+	overflow: hidden;
+}
+
+.tool-bar ul li:first-child{
+	float: left;
+}
 
 .tool-bar li{
 	font-size: 1em;
+	color: #fff;
 	opacity: 0.7;
 	list-style: none;
 	display: inline;
 	float: right;
-	margin-right: 10px;
-	padding: 3px 10px;
+	margin-left: 10px;
+	padding: 3px 15px;
 	background-color: #3DBE60;
 	border-radius: 5px;
 	cursor: pointer;
 }
+
+
 
 .edit-box{
 	height: 90%;
@@ -68,10 +91,13 @@ body{
 }
 
 .edit-window textarea{
+	color: #444;
 	width: 100%;
 	height: 100%;
 	padding: 30px 5%;
-	font-size: 18px;
+	font-size: 15px;
+	line-height: 2.5em;
+	resize: none;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box; /* Firefox */
 	-webkit-box-sizing:border-box; /* Safari */
@@ -90,17 +116,25 @@ body{
 
 
 .edit-full-screen-mode .edit-window{
-	width: 80%;
+	width: 100%;
 	margin: auto;
 	float: none;
 	border-right: 0;
 
 }
 
+.edit-full-screen-mode .edit-window textarea{
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
 .edit-full-screen-mode .view-window{
 	display: none;
 }
 
+.edit-full-screen-mode .edit-window .tool-bar{
+	width: 90%;
+}
 
 /*隐藏编辑框中退出全屏按钮*/
 
@@ -123,6 +157,9 @@ body{
 	display: inline;
 }
 
+#view-exit-full-screen{
+	display: none;
+}
 
 
 .preview-mode .edit-window{
@@ -133,31 +170,31 @@ body{
 	width: 100%;
 	margin: auto;
 	float: none;
+	height: initial;
 }
 
-.preview-mode .view-window .view-tool-bar{
+.preview-mode #view-exit-full-screen{
+	display: block;
+}
+
+.preview-mode #preview{
+	display: none;
+}
+
+.preview-mode .view-window .tool-bar{
 	width: 90%;
 	margin: auto;
 	display: block;
 }
 
 
-.print-mode .edit-window{
-	display: none;
+.preview-mode .view-window .content{
+	width: 90%;
+	margin: auto;
 }
 
-.print-mode .view-window{
-	width: 100%;
-	padding: 80px auto 0 auto;
-	float: none;
-	margin: 0;
-	padding: 100px;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box; /* Firefox */
-	-webkit-box-sizing:border-box; /* Safari */
-}
 
-.print-mode .view-tool-bar{
-	display: none;
+ body.preview-mode{
+	overflow: auto;
 }
 
