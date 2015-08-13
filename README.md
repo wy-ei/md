@@ -4,7 +4,7 @@
 
 点击 [这儿](http://wy-ei.github.io/markdown-editor) 尝试使用。
 
-*推荐使用承认哦么浏览器，火狐浏览器默认会在打印页面上添加页脚页眉*
+推荐使用chrome浏览器，火狐浏览器默认会在打印页面上添加页脚页眉
 
 ## License
 
