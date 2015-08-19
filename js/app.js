@@ -1,3 +1,5 @@
+var fullScreenEdit = false;    // if enter full screen edit mode don't need update preview page
+
 window.addEventListener('load',function(){
 
 	//handle input event
@@ -5,14 +7,18 @@ window.addEventListener('load',function(){
 		var inputer = document.getElementById('edit-area');
 		inputer.addEventListener('input',function(){
 			var view = document.getElementById('view-content');
-			view.innerHTML = marked(this.value);
+			if(fullScreenEdit == false){
+				view.innerHTML = marked(this.value);
+				scroll(view);
+			}
 		},false);
 	}();
 
-	// handle full screen button click event
+	// handle full screen edit button click event
 	!function(){
 		var fullscreen = document.getElementById('edit-full-screen');
 		fullscreen.addEventListener('click',function(){
+			fullScreenEdit = true;
 			document.body.classList.remove('preview-mode');
 			document.body.classList.add('edit-full-screen-mode');
 		},false);
@@ -28,10 +34,14 @@ window.addEventListener('load',function(){
 	}();
 
 
-	// handle exit full screen button click event
+	// handle exit full screen edit button click event
 	!function(){
 		var preview = document.getElementById('exit-edit-full-screen');
+		var inputer = document.getElementById('edit-area');
+		var view = document.getElementById('view-content');
 		preview.addEventListener('click',function(){
+			view.innerHTML = marked(inputer.value);
+			fullScreenEdit = false;		
 			document.body.classList.remove('edit-full-screen-mode');
 			document.body.classList.remove('preview-mode');
 		},false);
@@ -107,20 +117,28 @@ window.addEventListener('load',function(){
 			}
 		}	
 	}();
-},false);
 
 
-var save = (function(){
-	var inputer = document.getElementById('edit-area');
-	function _save(){
-		var text = inputer.value;
-		if(text){
-			window.localStorage.setItem('markdown-text',text);
+	var scroll = (function(){
+		var text = document.getElementById('edit-area');
+		return function(elem){
+			var scrollTop = text.scrollTop;
+			elem.scrollTop =scrollTop;
 		}
-	}
-	return _save;
-})();
+	})();
 
+	var save = (function(){
+		var inputer = document.getElementById('edit-area');
+		function _save(){
+			var text = inputer.value;
+			if(text){
+				window.localStorage.setItem('markdown-text',text);
+			}
+		}
+		return _save;
+	})();
 
-//handle close event
-window.addEventListener('unload', save,false);
+	//handle close event
+	window.addEventListener('unload', save,false);
+
+});

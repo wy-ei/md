@@ -94,7 +94,7 @@ body{
 	height: 100%;
 	padding: 30px 5%;
 	font-size: 15px;
-	line-height: 2.5em;
+	line-height: 2em;
 	resize: none;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box; /* Firefox */
@@ -192,3 +192,8 @@ body{
 	overflow: auto;
 }
 
+@media print{
+	.content{
+		font-size: 11px!important;
+	}
+}
