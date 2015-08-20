@@ -1,5 +1,6 @@
 /*
- * typo.css   https://github.com/sofish/typo.css
+ * typo.css   
+ * https://github.com/sofish/typo.css
 */
 
 @charset "utf-8";
@@ -130,7 +131,7 @@ sub {
 
 /* 让链接在 hover 状态下显示下划线 */
 a {
-  color: #1abc9c;
+  color: #000;
 }
 
 a:hover {
@@ -138,7 +139,7 @@ a:hover {
 }
 
 .typo a {
-  border-bottom: 1px solid #1abc9c;
+  border-bottom: 1px solid #333;
 }
 
 .typo a:hover {
