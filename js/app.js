@@ -71,11 +71,6 @@ window.addEventListener('load',function(){
 			document.body.classList.add('preview-mode');
 			
 			alert('请使用浏览器自带的打印功能打印此页面');
-			//hide tools bar and print
-			// var viewToolBar = document.getElementById('view-tool-bar');
-			// viewToolBar.style.display = 'none';
-			// window.print();
-			// viewToolBar.style.display = 'block';
 		},false);
 	}();
 
