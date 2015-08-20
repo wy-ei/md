@@ -57,7 +57,7 @@ body{
 }
 
 .tool-bar ul{
-	margin-top: 1em;
+	margin: 1em 0;
 	display: inline-block;
 	float: right;
 	overflow: hidden;
@@ -68,7 +68,7 @@ body{
 }
 
 .tool-bar li{
-	font-size: 1em;
+	font-size: 0.9em;
 	color: #fff;
 	opacity: 0.7;
 	list-style: none;
