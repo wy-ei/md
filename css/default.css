@@ -92,7 +92,7 @@ body{
 	color: #444;
 	width: 100%;
 	height: 100%;
-	padding: 30px 5%;
+	padding: 30px 5% 10px;
 	font-size: 15px;
 	line-height: 2em;
 	resize: none;
@@ -179,12 +179,22 @@ body{
 	width: 90%;
 	margin: auto;
 	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	border-bottom: none;
+	opacity: 0;
+}
+
+.preview-mode .view-window .tool-bar:hover{
+	opacity: 1;
 }
 
 
 .preview-mode .view-window .content{
 	width: 90%;
 	margin: auto;
+	height: 100%;
 }
 
 
