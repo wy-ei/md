@@ -1,9 +1,8 @@
+@charset "utf-8";
 /*
  * typo.css   
  * https://github.com/sofish/typo.css
 */
-
-@charset "utf-8";
 
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 html {

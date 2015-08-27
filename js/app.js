@@ -70,7 +70,7 @@ window.addEventListener('load',function(){
 			document.body.classList.remove('edit-full-screen-mode');
 			document.body.classList.add('preview-mode');
 			
-			alert('请使用浏览器自带的打印功能打印此页面');
+			$alert('请使用浏览器自带的打印功能打印此页面');
 		},false);
 	}();
 
@@ -137,4 +137,60 @@ window.addEventListener('load',function(){
 	//handle close event
 	window.addEventListener('unload', save,false);
 
+
+
+	var editWindow = document.getElementById('edit-window');
+	editWindow.addEventListener('dragover',function(event){
+		event.preventDefault();
+		event.target.style.opacity = 0.5;
+	});
+	editWindow.addEventListener('dragenter',function(event){
+		event.preventDefault();
+	});
+	editWindow.addEventListener('dragleave',function(event){
+		event.preventDefault();
+		event.target.style.opacity = 1;
+	});
+	
+	editWindow.addEventListener('drop',function(event){
+		event.preventDefault();
+		var files = event.dataTransfer.files;
+		for(var i=0,len=files.length;i<len;i++){
+			var reader = new FileReader();
+			if(/text/.test(files[i].type)){
+				reader.readAsText(files[i]);
+				reader.onload = function(){
+					var inputer = document.getElementById('edit-area');
+					var view = document.getElementById('view-content');
+					inputer.value = reader.result;
+					try{
+						view.innerHTML = marked(reader.result);
+					}
+					catch(e){
+						$alert('解析文件失败！');
+					}
+				}
+			}else{
+				$alert('请拖放文本文件，谢谢！');
+			}
+		}
+		event.target.style.opacity = 1;
+	});
+
+	$alert = (function(){
+		var mask = document.getElementById('mask'),
+			box = document.getElementById('alert-box'),
+			text = document.getElementById('alert-text'),
+			close = document.getElementById('alert-close');
+		close.addEventListener('click',function(){
+			mask.style.display = 'none';
+			box.style.display = 'none';
+		});
+		return function(info){
+			mask.style.display = 'block';
+			box.style.display = 'block';
+			text.innerHTML = info;
+		}
+	})();
 });
+
