@@ -1,0 +1,19 @@
+{
+  "name": "markdown-editor",
+  "version": "1.0.0",
+  "description": "a markdown editor",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wy-ei/markdown-editor.git"
+  },
+  "author": "wy-ei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wy-ei/markdown-editor/issues"
+  },
+  "homepage": "https://github.com/wy-ei/markdown-editor#readme"
+}

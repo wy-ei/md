@@ -3,36 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>markdown</title>
-	<link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/typo.css">
 </head>
-<body>
-	<section id='edit-window' class='edit-window'>
-			<section class='tool-bar'>
-				<h1><a href='https://github.com/wy-ei/markdown-editor'>Markdown Editor v1.1</a></h1>
-				<ul>
-					<li id='edit-full-screen'>全屏编辑</li>
-					<li id='exit-edit-full-screen'>退出全屏</li>
-				</ul>
-			</section>
-		<section class='edit-box'>
-			<textarea id='edit-area' placeholder='在此输入' spellcheck='false'></textarea>
-		</section>
-		
+<body id="markdown">
+	<section class='edit-window'>
+		<header class='tool-bar'>
+			<a href='https://github.com/wy-ei/markdown-editor'>Markdown Editor v1.1</a>
+			<span v-on:click.stop="toggleFullScreenEdit">{{ fullScreetEditState }}</span>
+		</header>
+		<div class='edit-box' v-on:drop.prevent="dropHandler" v-on:dragover.prevent="" v-on:dragenter.prevent="" v-on:dragleave.prevent="">
+			 <textarea v-model="sourceContent" placeholder='在此输入' spellcheck='false' debounce="500"></textarea>
+		</div>	
 	</section>
 	<section class='view-window'>
-		<section id='view-tool-bar' class='tool-bar'>
-			<ul>
-				<li id='preview'>预览</li>
-				<li id='print'>打印</li>
-				<li id='view-exit-full-screen'>继续编辑</li>
-			</ul>
-		</section>
-		<section id='view-content' class='content typo'>
-
-		</section>
+		<header class='tool-bar'>
+			<span v-on:click="toggleFullScreenPreview">{{ fullScreenPreviewState }}</span>
+		</header>
+		<div class='content typo' id="dist">	
+		</div>
 	</section>
-	<script type="text/javascript" src='lib/marked.min.js'></script>
-	<script type="text/javascript" src='js/app.js'></script>
+	<script src='lib/marked.min.js'></script>
+	<script src="lib/vue.js"></script>
+	<script src='js/app.js'></script>
 </body>
 </html>
