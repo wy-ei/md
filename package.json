@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/wy-ei/markdown-editor/issues"
   },
-  "homepage": "https://github.com/wy-ei/markdown-editor#readme"
+  "homepage": "https://github.com/wy-ei/markdown-editor#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.5"
+  }
 }

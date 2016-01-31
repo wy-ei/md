@@ -244,22 +244,22 @@ strong, b {
 /* 保证块/段落之间的空白隔行 */
 .typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
 .typo-p, .typo-pre, .typo-ul, .typo-ol, .typo-dl, .typo-form, .typo-hr, .typo-table, blockquote {
-  margin-bottom: 1.2em
+  margin-bottom: 0.6em
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
   font-weight: 100;
   color: #000;
-  line-height: 1.35;
+  line-height: 1.1;
 }
 
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6,
 .typo-h1, .typo-h2, .typo-h3, .typo-h4, .typo-h5, .typo-h6 {
-  margin-top: 1.2em;
+  margin-top: 0.6em;
   margin-bottom: 0.6em;
-  line-height: 1.35;
+  line-height: 1.1;
 }
 
 .typo h1, .typo-h1 {

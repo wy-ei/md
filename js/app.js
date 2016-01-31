@@ -4,7 +4,8 @@ var wm = new Vue({
   data: {
     sourceContent: "",
     fullScreetEditState: "全屏编辑",
-    fullScreenPreviewState: "预览"
+    fullScreenPreviewState: "预览",
+    isSaved:false
   },
   methods: {
     dropHandler: function(event) {
@@ -41,13 +42,23 @@ var wm = new Vue({
       }
     },
     save:function(){
-        window.localStorage.setItem('markdown-text',sourceContent);
+    		if(this.isSaved == false){
+        	window.localStorage.setItem('markdown-text',this.sourceContent);
+    			this.isSaved = true;
+    		}
     }
   },
   ready: function() {
     var text = window.localStorage.getItem('markdown-text');
     if (text) {
-      this.sourceContent = text;
+    	// because this Vue instance is already in DOM
+    	// so ready event will be fired before Vue instance 
+    	// create complete,so watch will not notice this change
+    	// becase vm.$watch is added after ready hook fired
+    	// so use nextTick let this change noticed by $watch.
+    	this.$nextTick(function () {
+      	this.sourceContent = text;
+    	});
     } else {
       var xmlhttp;
       if (window.XMLHttpRequest) {
@@ -63,13 +74,14 @@ var wm = new Vue({
         }
       };
     }
+    // save content every 5s
     setInterval(this.save, 50000);
     window.addEventListener('unload', this.save, false);
-
   }
 });
 
 wm.$watch("sourceContent", function(text) {
   var dist = document.getElementById('dist');
   dist.innerHTML = marked(text);
+  this.isSaved = false;
 });
