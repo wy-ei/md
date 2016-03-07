@@ -29,6 +29,7 @@ var wm = new Vue({
                 this.$el.classList.add('fullscreen-edit');
             }else{
                 this.$el.classList.remove('fullscreen-edit');
+                this.sourceContent += " ";
             }
         },
         toggleFullScreenPreview: function () {
@@ -82,8 +83,9 @@ var wm = new Vue({
 });
 
 wm.$watch("sourceContent", function (text) {
-    // if(this.fullScreetEditState == )
-    var dist = document.getElementById('dist');
-    dist.innerHTML = marked(text);
-    this.isSaved = false;
+    if(!this.isFullScreenEdit){
+        var dist = document.getElementById('dist');
+        dist.innerHTML = marked(text);
+        this.isSaved = false;
+    }
 });
