@@ -10,31 +10,36 @@ body{
 	overflow: hidden;
 }
 .tool-bar(){
-	font-size: 15px;
+	position: absolute;
+	font-size: 14px;
 	box-sizing: border-box;
 	width: 100%;
 	height: 50px;
 	padding: 10px 20px;
 	border-bottom: 1px solid #ccc;
 	overflow: hidden;
-	position: absolute;
 	top: 0;
 	left: 0;
 	a{
 		font-size: 1.2em;
-		color: #333;
+		color: #000;
+        font-weight: bold;
 	}
 	span{
 		display: inline-block;
 		padding: 0 5px;
+        margin-left: 20px;
 		color: #fff;
-		background-color: #080;
-		float: right;
+		background-color: #72BF72;
+        float: right;
 		border-radius: 5px;
 		cursor: pointer;
 		&:hover{
-			background-color: #060;
+			background-color: #080;
 		}
+        &:last-of-type{
+            margin-left: 0;
+        }
 	}
 }
 .box(){
@@ -72,6 +77,7 @@ body{
 	.box;
 	header{
 		.tool-bar;
+        margin-left: 1px;
 	}
 	.content{
 		height: 100%;
@@ -96,6 +102,10 @@ body{
 	.view-window{
 		width: 100%;
 		height: initial;
+        header{
+            position: fixed;
+            border-bottom: none;
+        }
 	}
 	.edit-window{
 		display: none;
@@ -107,7 +117,7 @@ body.fullscreen-preview{
 }
 
 
-@media print {
+.box(){
 	html{
 		height: initial;
 	}
@@ -123,5 +133,9 @@ body.fullscreen-preview{
 	}
 	.edit-window{
 		display: none;
-	}	
+	}
+}
+
+@media print {
+	.box;
 }
