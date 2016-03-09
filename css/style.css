@@ -19,22 +19,6 @@ body {
   box-shadow: 1px 0px 0px 0px #ccc;
   float: left;
 }
-.edit-window html {
-  height: initial;
-}
-.edit-window body {
-  overflow: auto;
-}
-.edit-window .view-window {
-  width: 100%;
-  padding-top: 0px;
-}
-.edit-window .view-window header {
-  display: none;
-}
-.edit-window .edit-window {
-  display: none;
-}
 .edit-window header {
   position: absolute;
   font-size: 14px;
@@ -92,22 +76,6 @@ body {
   position: relative;
   box-sizing: border-box;
   padding-top: 50px;
-}
-.view-window html {
-  height: initial;
-}
-.view-window body {
-  overflow: auto;
-}
-.view-window .view-window {
-  width: 100%;
-  padding-top: 0px;
-}
-.view-window .view-window header {
-  display: none;
-}
-.view-window .edit-window {
-  display: none;
 }
 .view-window header {
   position: absolute;
@@ -171,16 +139,11 @@ body.fullscreen-preview {
   overflow: auto;
 }
 @media print {
-  width: 50%;
-  height: 100%;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  padding-top: 50px;
   html {
     height: initial;
   }
   body {
+    height: initial;
     overflow: auto;
   }
   .view-window {
@@ -193,4 +156,31 @@ body.fullscreen-preview {
   .edit-window {
     display: none;
   }
+}
+::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+  border: solid transparent;
+  min-height: 28px;
+  border-radius: 10px;
+  padding: 100px 0 0;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
 }

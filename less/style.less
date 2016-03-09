@@ -50,6 +50,10 @@ body{
 	box-sizing: border-box;
 	padding-top: 50px;
 }
+
+
+
+
 .edit-window{
 	.box;
 	box-shadow: 1px 0px 0px 0px #ccc;
@@ -117,12 +121,13 @@ body.fullscreen-preview{
 }
 
 
-.box(){
+.print(){
 	html{
 		height: initial;
 	}
 	body{
-		overflow: auto;
+        height: initial;
+	    overflow: auto;
 	}
 	.view-window{
 		width: 100%;
@@ -137,5 +142,41 @@ body.fullscreen-preview{
 }
 
 @media print {
-	.box;
+	.print;
+}
+
+
+// scrollbar style
+
+::-webkit-scrollbar {
+    height: 16px;
+    overflow: visible;
+    width: 16px;
+}
+
+
+::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+    border: solid transparent;
+    min-height: 28px;
+    border-radius: 10px;
+    padding: 100px 0 0;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+
+::-webkit-scrollbar-track {
+    background-clip: padding-box;
+    border: solid transparent;
+    border-width: 0 0 0 4px;
 }
