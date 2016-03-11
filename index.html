@@ -15,7 +15,7 @@
             <span v-on:click.stop="toggleFullScreenEdit">{{ isFullScreenEdit ? "退出全屏":"全屏编辑" }}</span>
         </header>
         <div class='edit-box' v-on:drop.prevent="dropHandler" v-on:dragover.prevent="" v-on:dragenter.prevent="" v-on:dragleave.prevent="">
-            <textarea v-model="sourceContent" placeholder='在此输入' spellcheck='false' debounce="500"></textarea>
+            <textarea v-model="sourceContent" v-on:keydown.tab.prevent.stop="tabHandler($event)" placeholder='在此输入' spellcheck='false' debounce="500"></textarea>
         </div>
     </section>
     <section class='view-window'>
@@ -23,7 +23,7 @@
             <span v-on:click="toggleFullScreenPreview">{{ isFullScreenPreview ?"退出全屏":"全屏预览" }}</span>
             <span v-on:click="print">打印</span>
         </header>
-        <div class='content typo' id="dist">
+        <div class='content typo' id="dist" >
         </div>
     </section>
     <script src='lib/marked.min.js'></script>

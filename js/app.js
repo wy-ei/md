@@ -48,6 +48,18 @@ var wm = new Vue({
         },
         print: function () {
             window.print();
+        },
+        handleTab:function(event){
+            var textarea = event.target;
+            var text = textarea.value;
+            var selectionStart = textarea.selectionStart;
+            var selectionEnd = textarea.selectionEnd;
+            // convert tab to four space
+            var newText = text.slice(0,selectionStart) + '    ' + text.slice(selectionEnd);
+            textarea.value = newText;
+            // set cursor position
+            textarea.selectionStart = selectionStart + 4;
+            textarea.selectionEnd = selectionStart + 4;
         }
     },
     ready: function () {
@@ -76,8 +88,8 @@ var wm = new Vue({
                 }
             };
         }
-        // save content every 5s
-        setInterval(this.save, 50000);
+        // save content every 3s
+        setInterval(this.save, 30000);
         window.addEventListener('unload', this.save, false);
     }
 });
@@ -86,6 +98,6 @@ wm.$watch("sourceContent", function (text) {
     if(!this.isFullScreenEdit){
         var dist = document.getElementById('dist');
         dist.innerHTML = marked(text);
-        this.isSaved = false;
     }
+    this.isSaved = false;
 });
