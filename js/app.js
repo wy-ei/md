@@ -49,7 +49,7 @@ var wm = new Vue({
         print: function () {
             window.print();
         },
-        handleTab:function(event){
+        tabHandler:function(event){
             var textarea = event.target;
             var text = textarea.value;
             var selectionStart = textarea.selectionStart;
