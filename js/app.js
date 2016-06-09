@@ -5,7 +5,8 @@ var wm = new Vue({
         sourceContent: "",
         isFullScreenPreview: false,
         isFullScreenEdit:false,
-        isSaved: false
+        isSaved: false,
+        isShowInfoPanel:false
     },
     methods: {
         dropHandler: function (event) {
@@ -39,6 +40,10 @@ var wm = new Vue({
             }else{
                 this.$el.classList.remove('fullscreen-preview');
             }
+        },
+        toggleInfoPanel:function(){
+        	this.isShowInfoPanel = !this.isShowInfoPanel;
+        	console.log('clk');
         },
         save: function () {
             if (this.isSaved == false) {
