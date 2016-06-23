@@ -1,0 +1,295 @@
+.markdown-preview > :first-child {
+  margin-top: 0;
+}
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  line-height: 1.2;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #ffffff;
+}
+.markdown-preview h1 {
+  font-size: 2.4em;
+  font-weight: 300;
+}
+.markdown-preview h2 {
+  font-size: 1.8em;
+  font-weight: 400;
+}
+.markdown-preview h3 {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+.markdown-preview h4 {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.markdown-preview h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.markdown-preview h6 {
+  font-size: 1.0em;
+  font-weight: 600;
+}
+.markdown-preview strong {
+  color: #ffffff;
+}
+.markdown-preview del {
+  color: #c5c5c5;
+}
+.markdown-preview a,
+.markdown-preview a code {
+  color: blue;
+}
+.markdown-preview img {
+  max-width: 100%;
+}
+.markdown-preview > p {
+  margin-top: 0;
+  margin-bottom: 1.5em;
+}
+.markdown-preview > ul,
+.markdown-preview > ol {
+  margin-bottom: 1.5em;
+}
+.markdown-preview blockquote {
+  margin: 1.5em 0;
+  font-size: inherit;
+  color: #c5c5c5;
+  border-color: #4b5362;
+  border-width: 4px;
+}
+.markdown-preview hr {
+  margin: 3em 0;
+  border-top: 2px dashed #4b5362;
+  background: none;
+}
+.markdown-preview table {
+  margin: 1.5em 0;
+}
+.markdown-preview th {
+  color: #ffffff;
+}
+.markdown-preview th,
+.markdown-preview td {
+  padding: .66em 1em;
+  border: 1px solid #4b5362;
+}
+.markdown-preview code {
+  color: #ffffff;
+  line-height: 1.4em;
+  background-color: #3a404b;
+}
+.markdown-preview kbd {
+  color: #ffffff;
+  border: 1px solid #4b5362;
+  border-bottom: 2px solid #3e4451;
+  background-color: #3a404b;
+}
+::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+  border: solid transparent;
+  min-height: 28px;
+  border-radius: 10px;
+  padding: 100px 0 0;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
+}
+html {
+  height: 100%;
+  font-size: 14px;
+}
+body {
+  margin: 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  color: #eee;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  background-color: #282c34;
+  overflow: hidden;
+  font-size: 13px;
+}
+.edit-window {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 50px;
+  border-right: 1px solid #181a1f;
+  float: left;
+}
+.edit-window header {
+  position: absolute;
+  font-size: 14px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #181a1f;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+.edit-window header a {
+  font-size: 1.2em;
+  color: #ccc;
+  font-weight: bold;
+}
+.edit-window header span {
+  display: inline-block;
+  float: right;
+  margin-right: -1px;
+  padding: 0 .6em;
+  margin-left: 15px;
+  line-height: 1.8em;
+  color: #ccc;
+  border: 1px solid #181a1f;
+  background: rgba(53, 59, 69, 0.33);
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+.edit-window header span:hover {
+  color: #d7dae0;
+  background: #353b45;
+}
+.edit-window header span:last-of-type {
+  margin-left: 0;
+}
+.edit-window .edit-box {
+  height: 100%;
+}
+.edit-window .edit-box textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: 0;
+  padding: 20px;
+  outline: medium;
+  color: #eee;
+  background-color: #282c34;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* Firefox */
+  -webkit-box-sizing: border-box;
+  /* Safari */
+}
+.view-window {
+  float: right;
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 50px;
+}
+.view-window header {
+  position: absolute;
+  font-size: 14px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #181a1f;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  margin-left: 1px;
+}
+.view-window header a {
+  font-size: 1.2em;
+  color: #ccc;
+  font-weight: bold;
+}
+.view-window header span {
+  display: inline-block;
+  float: right;
+  margin-right: -1px;
+  padding: 0 .6em;
+  margin-left: 15px;
+  line-height: 1.8em;
+  color: #ccc;
+  border: 1px solid #181a1f;
+  background: rgba(53, 59, 69, 0.33);
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+.view-window header span:hover {
+  color: #d7dae0;
+  background: #353b45;
+}
+.view-window header span:last-of-type {
+  margin-left: 0;
+}
+.view-window .content {
+  height: 100%;
+  overflow: auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+.fullscreen-edit .edit-window {
+  width: 100%;
+}
+.fullscreen-edit .view-window {
+  display: none;
+}
+.fullscreen-preview .view-window {
+  width: 100%;
+  height: initial;
+}
+.fullscreen-preview .view-window header {
+  position: fixed;
+  border-bottom: none;
+}
+.fullscreen-preview .edit-window {
+  display: none;
+}
+body.fullscreen-preview {
+  height: initial;
+  overflow: auto;
+}
+.status-bar {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  padding: 0 20px;
+  width: 100%;
+  height: 20px;
+  border: 1px solid #181a1f;
+  background-color: #282c34;
+  line-height: 20px;
+  font-size: 11px;
+}
+.status-bar p {
+  line-height: 20px;
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+}

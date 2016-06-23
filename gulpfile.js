@@ -3,14 +3,14 @@ var gulp = require('gulp'),
 
 
 gulp.task('css',function(){
-	gulp.src("less/style.less")
+	gulp.src(["less/index.less"])
 		.pipe(less())
 		.on('error', function(e){
 			console.log(e.message);
 		})
-		.pipe(gulp.dest("./css/"));
+		.pipe(gulp.dest("./css"));
 });
 
 gulp.task('watch',function(){
-	gulp.watch('less/style.less',['css']);
+	gulp.watch('less/*.less',['css']);
 });

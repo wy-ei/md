@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>markdown</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/typo.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body id="markdown">
@@ -21,13 +20,12 @@
     <section class='view-window'>
         <header class='tool-bar'>
             <span v-on:click="toggleFullScreenPreview">{{ isFullScreenPreview ?"退出全屏":"全屏预览" }}</span>
-            <span v-on:click="print">打印</span>
         </header>
-        <div v-pre class='content typo' id="dist" >
+        <div v-pre class='content markdown-preview' id="dist" >
         </div>
     </section>
-    <section class="panel-info" v-bind:class="{ 'hide': isShowInfoPanel === false }" v-on:click="toggleInfoPanel">
-    	<p>字数：{{ sourceContent.length }}</p>
+    <section class="status-bar">
+        <p>字数：{{ sourceContent.length }}</p>
     </section>
     <script src='lib/marked.min.js'></script>
     <script src="lib/vue.js"></script>

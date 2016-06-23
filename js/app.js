@@ -6,9 +6,37 @@ var wm = new Vue({
         isFullScreenPreview: false,
         isFullScreenEdit:false,
         isSaved: false,
-        isShowInfoPanel:false
+        isHighLightLoaded:false
     },
     methods: {
+        highLightCode:function(dom){
+            var _this = this;
+            function highlight(){
+                var codeList = dom.querySelectorAll('pre>code');
+                var len = codeList.length;
+                for(var i=0;i<len;i++){
+                    if(hljs){
+                        console.log('ss');
+                        hljs.highlightBlock(codeList[i]);
+                    }
+                }
+            }
+            if(_this.isHighLightLoaded === false){
+                _this.isHighLightLoaded = true;
+                var script = document.createElement('script');
+                script.src = 'http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js';
+                document.head.appendChild(script);
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/dracula.min.css';
+                document.head.appendChild(link);
+                script.onload = function(){
+                    highlight();
+                }
+            }else{
+                highlight();
+            }
+        },
         dropHandler: function (event) {
             var that = this;
             var files = event.dataTransfer.files;
@@ -41,18 +69,11 @@ var wm = new Vue({
                 this.$el.classList.remove('fullscreen-preview');
             }
         },
-        toggleInfoPanel:function(){
-        	this.isShowInfoPanel = !this.isShowInfoPanel;
-        	console.log('clk');
-        },
         save: function () {
             if (this.isSaved == false) {
                 window.localStorage.setItem('markdown-text', this.sourceContent);
                 this.isSaved = true;
             }
-        },
-        print: function () {
-            window.print();
         },
         tabHandler:function(event){
             var textarea = event.target;
@@ -71,7 +92,7 @@ var wm = new Vue({
         var text = window.localStorage.getItem('markdown-text');
         if (text) {
             // because this Vue instance is already in DOM
-            // so ready event will be fired before Vue instance 
+            // so ready event will be fired before Vue instance
             // create complete,so watch will not notice this change
             // becase vm.$watch is added after ready hook fired
             // so use nextTick let this change noticed by $watch.
@@ -103,6 +124,7 @@ wm.$watch("sourceContent", function (text) {
     if(!this.isFullScreenEdit){
         var dist = document.getElementById('dist');
         dist.innerHTML = marked(text);
+        this.highLightCode(dist);
     }
     this.isSaved = false;
 });

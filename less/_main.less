@@ -1,3 +1,5 @@
+@import "_variables";
+
 html{
 	height: 100%;
 	font-size: 14px;
@@ -7,7 +9,12 @@ body{
 	position: relative;
 	height: 100%;
 	width: 100%;
+    color:#eee;
+    box-sizing: border-box;
+    padding-bottom: @footerHeight;
+    background-color: @backgroundColor;
 	overflow: hidden;
+    font-size: 13px;
 }
 .tool-bar(){
 	position: absolute;
@@ -16,26 +23,31 @@ body{
 	width: 100%;
 	height: 50px;
 	padding: 10px 20px;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid @borderColor;
 	overflow: hidden;
 	top: 0;
 	left: 0;
 	a{
 		font-size: 1.2em;
-		color: #000;
+		color: #ccc;
         font-weight: bold;
 	}
 	span{
-		display: inline-block;
-		padding: 0 5px;
-        margin-left: 20px;
-		color: #fff;
-		background-color: #72BF72;
+        display: inline-block;
         float: right;
-		border-radius: 5px;
-		cursor: pointer;
+        margin-right: -1px;
+        padding: 0 .6em;
+        margin-left: 15px;
+        line-height: 1.8em;
+        color: #ccc;
+        border: 1px solid @borderColor;
+        background: rgba(53, 59, 69, 0.33);
+        cursor: pointer;
+        vertical-align: middle;
+        position: relative;
 		&:hover{
-			background-color: #080;
+            color: #d7dae0;
+            background: #353b45;
 		}
         &:last-of-type{
             margin-left: 0;
@@ -56,7 +68,7 @@ body{
 
 .edit-window{
 	.box;
-	box-shadow: 1px 0px 0px 0px #ccc;
+	border-right: 1px solid @borderColor;
 	float: left;
 	header{
 		.tool-bar;
@@ -70,6 +82,8 @@ body{
 			border: 0;
 			padding: 20px;
 			outline: medium;
+            color:#eee;
+            background-color: @backgroundColor;
 			box-sizing:border-box;
 			-moz-box-sizing:border-box; /* Firefox */
 			-webkit-box-sizing:border-box; /* Safari */
@@ -87,7 +101,7 @@ body{
 		height: 100%;
 		overflow: auto;
 		padding: 10px 20px;
-    box-sizing: border-box;
+        box-sizing: border-box;
 	}
 }
 
@@ -120,79 +134,21 @@ body.fullscreen-preview{
 	overflow: auto;
 }
 
-.panel-info{
+.status-bar{
     position: fixed;
     left: 0px;
-    width: 120px;
-    text-align: center;
     bottom: 0px;
-    padding: 5px 0;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    transition: 100ms;
-    cursor: pointer;
-    &.hide{
-    	left: -100px;
+    padding: 0 20px;
+    width: 100%;
+    height: @footerHeight;
+    border: 1px solid @borderColor;
+    background-color: @backgroundColor;
+    line-height: 20px;
+    font-size: 11px;
+    p{
+        line-height: @footerHeight;
+        font-size: 11px;
+        margin: 0;
+        padding: 0;
     }
-}
-
-
-.print(){
-	html{
-		height: initial;
-	}
-	body{
-        height: initial;
-	    overflow: auto;
-	}
-	.view-window{
-		width: 100%;
-		padding-top: 0px;
-		header{
-			display: none;
-		}
-	}
-	.edit-window{
-		display: none;
-	}
-}
-
-@media print {
-	.print;
-}
-
-
-// scrollbar style
-
-::-webkit-scrollbar {
-    height: 16px;
-    overflow: visible;
-    width: 16px;
-}
-
-
-::-webkit-scrollbar-button {
-    height: 0;
-    width: 0;
-}
-
-::-webkit-scrollbar-corner {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    background-clip: padding-box;
-    border: solid transparent;
-    min-height: 28px;
-    border-radius: 10px;
-    padding: 100px 0 0;
-    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
-    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
-}
-
-::-webkit-scrollbar-track {
-    background-clip: padding-box;
-    border: solid transparent;
-    border-width: 0 0 0 4px;
 }
