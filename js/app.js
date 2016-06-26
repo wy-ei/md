@@ -16,7 +16,6 @@ var wm = new Vue({
                 var len = codeList.length;
                 for(var i=0;i<len;i++){
                     if(hljs){
-                        console.log('ss');
                         hljs.highlightBlock(codeList[i]);
                     }
                 }
@@ -38,14 +37,14 @@ var wm = new Vue({
             }
         },
         dropHandler: function (event) {
-            var that = this;
+            var _this = this;
             var files = event.dataTransfer.files;
             for (var i = 0, len = files.length; i < len; i++) {
                 var reader = new FileReader();
                 if (/text/.test(files[i].type) || /\.md$/i.test(files[i].name)) {
                     reader.readAsText(files[i]);
                     reader.onload = function () {
-                        that.sourceContent = reader.result;
+                        _this.sourceContent = reader.result;
                     }
                 } else {
                     alert('请拖放文本文件，谢谢！');
@@ -115,7 +114,7 @@ var wm = new Vue({
             };
         }
         // save content every 3s
-        setInterval(this.save, 30000);
+        setInterval(this.save, 5000);
         window.addEventListener('unload', this.save, false);
     }
 });
