@@ -1,0 +1,140 @@
+body,section{padding: 0;margin: 0;}
+
+html{
+	height: 100%;
+    font-size: 13px;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+	color: #444;
+	font-family: "calluna-sans",Helvetica,Hiragino Sans GB,Microsoft JhengHei,WenQuanYi Micro Hei,sans-serif;
+    position: relative;
+}
+
+.edit-window,
+.view-window{
+    overflow: hidden;
+    width: 50%;
+	height: 100%;
+    position: absolute;
+    top: 0;
+}
+.edit-window{
+	border-right: 1px solid #ccc;
+    left: 0;
+}
+.view-window{
+    right: 0;
+}
+
+.edit-box,
+.preview-box{
+	padding-top: 40px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+.edit-window textarea{
+	color: #444;
+	width: 100%;
+	height: 100%;
+	line-height: 1.7em;
+    padding: 20px;
+	resize: none;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	border: 0;
+	outline: medium;
+}
+
+.preview-box{
+    overflow: auto;
+}
+
+.preview-box .content{
+    padding: 20px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+
+.tool-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    margin: 0 1px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    background: #fff;
+}
+.tool-bar a{
+    padding-left: 20px;
+}
+.tool-bar .btn{
+    display: inline-block;
+    float: right;
+	color: #fff;
+    font-size: 12px;
+    line-height: 1em;
+    padding: 5px 8px;
+    margin:9px 10px;
+    background: #3DBE60;
+    border-radius: 2px;
+    transition: color .5s;
+    cursor: pointer;
+}
+.tool-bar .btn:hover{
+    background: #3D9E60;
+}
+
+
+/*
+ * edit-full-screen-mode : 编辑时候进入全屏，显示退出全屏，和预览按钮，隐藏全屏按钮
+ * preview-mode：预览，隐藏编辑框，显示预览框，显示预览框上面的工具条
+ * 其他：隐藏退出全屏按钮
+*/
+
+.fullscreen-edit .edit-window{
+	width: 100%;
+}
+
+.fullscreen-edit .view-window{
+	display: none;
+}
+
+.fullscreen-preview .view-window{
+	width: 100%;
+}
+
+.fullscreen-preview .edit-window{
+	display: none;
+}
+
+@media print {
+    body{
+        height: initial;
+    }
+    .edit-window{
+        display: none;
+    }
+    .view-window{
+    	width: 100%;
+        overflow: auto;
+        position: static;
+    }
+    .preview-box{
+        padding: 0;
+    }
+    .tool-bar{
+        display: none;
+    }
+}

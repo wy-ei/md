@@ -9,33 +9,6 @@ var wm = new Vue({
         isHighLightLoaded:false
     },
     methods: {
-        highLightCode:function(dom){
-            var _this = this;
-            function highlight(){
-                var codeList = dom.querySelectorAll('pre>code');
-                var len = codeList.length;
-                for(var i=0;i<len;i++){
-                    if(hljs){
-                        hljs.highlightBlock(codeList[i]);
-                    }
-                }
-            }
-            if(_this.isHighLightLoaded === false){
-                _this.isHighLightLoaded = true;
-                var script = document.createElement('script');
-                script.src = 'http://apps.bdimg.com/libs/highlight.js/9.1.0/highlight.min.js';
-                document.head.appendChild(script);
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = 'http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/dracula.min.css';
-                document.head.appendChild(link);
-                script.onload = function(){
-                    highlight();
-                }
-            }else{
-                highlight();
-            }
-        },
         dropHandler: function (event) {
             var _this = this;
             var files = event.dataTransfer.files;
@@ -85,6 +58,9 @@ var wm = new Vue({
             // set cursor position
             textarea.selectionStart = selectionStart + 4;
             textarea.selectionEnd = selectionStart + 4;
+        },
+        print: function(){
+            window.print();
         }
     },
     ready: function () {
@@ -114,7 +90,7 @@ var wm = new Vue({
             };
         }
         // save content every 3s
-        setInterval(this.save, 5000);
+        setInterval(this.save, 3000);
         window.addEventListener('unload', this.save, false);
     }
 });
@@ -123,7 +99,6 @@ wm.$watch("sourceContent", function (text) {
     if(!this.isFullScreenEdit){
         var dist = document.getElementById('dist');
         dist.innerHTML = marked(text);
-        this.highLightCode(dist);
     }
     this.isSaved = false;
 });

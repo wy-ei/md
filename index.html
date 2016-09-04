@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>markdown</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/typo.css">
 </head>
 
 <body id="markdown">
     <section class='edit-window'>
         <header class='tool-bar'>
             <a href='https://github.com/wy-ei/markdown-editor'>Markdown Editor v1.1</a>
-            <span v-on:click.stop="toggleFullScreenEdit">{{ isFullScreenEdit ? "退出全屏":"全屏编辑" }}</span>
+            <span class="btn" v-on:click.stop="toggleFullScreenEdit">{{ isFullScreenEdit ? "退出全屏":"全屏编辑" }}</span>
         </header>
         <div class='edit-box' v-on:drop.prevent="dropHandler" v-on:dragover.prevent="" v-on:dragenter.prevent="" v-on:dragleave.prevent="">
             <textarea v-model="sourceContent" v-on:keydown.tab.prevent.stop="tabHandler($event)" placeholder='在此输入' spellcheck='false' debounce="500"></textarea>
@@ -19,15 +20,12 @@
     </section>
     <section class='view-window'>
         <header class='tool-bar'>
-            <span v-on:click="toggleFullScreenPreview">{{ isFullScreenPreview ?"退出全屏":"全屏预览" }}</span>
+            <span class="btn" v-on:click="toggleFullScreenPreview">{{ isFullScreenPreview ?"退出全屏":"全屏预览" }}</span>
+            <span class="btn" v-on:click="print">打印</span>
         </header>
-        <div v-pre class='content markdown-preview' id="dist" >
+        <div v-pre class='preview-box'>
+            <div id="dist" class="content typo"></div>
         </div>
-    </section>
-    <section class="status-bar">
-        <p>
-            <span>字数：{{ sourceContent.length }}</span>
-        </p>
     </section>
     <script src='lib/marked.min.js'></script>
     <script src="lib/vue.js"></script>
