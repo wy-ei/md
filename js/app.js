@@ -160,6 +160,13 @@ function getToken(bucket, accessKey, secretKey) {
 
 var QINIU_UPLOADER = null;
 
+marked.setOptions({
+  highlight: function (code) {
+    return hljs.highlightAuto(code).value;
+  }
+});
+
+
 var wm = new Vue({
     el: "#markdown",
     data: {
