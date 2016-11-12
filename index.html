@@ -13,10 +13,11 @@
     <div id="markdown">
     <section class='edit-window'>
         <header class='tool-bar'>
-            <a href='https://github.com/wy-ei/markdown-editor'>Markdown Editor v1.1</a>
+            <a href='https://github.com/wy-ei/markdown-editor'>Markdown Editor</a>
             <span class="btn" v-on:click="setting.domStyle='flex'">设置</span>
             <span class="btn" v-show="setting.token" id="js-upload-image">上传图片</span>
             <span class="btn" v-on:click.stop="toggleFullScreenEdit">{{ isFullScreenEdit ? "退出全屏":"全屏编辑" }}</span>
+            <span class="text">{{ sourceContent.length }} 字</span>
         </header>
         <div class='edit-box' id="js-drag-container">
             <textarea id="js-textarea" v-model="sourceContent" v-on:keydown.tab.prevent.stop="tabHandler($event)" placeholder='在此输入' spellcheck='false' debounce="500"></textarea>

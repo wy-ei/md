@@ -109,6 +109,17 @@ body{
     font-size: 12px;
     line-height: 1em;
 }
+
+.text{
+    display: inline-block;
+    float: right;
+
+    margin:9px 10px;
+    padding: 5px 8px;
+    font-size: 12px;
+    line-height: 1em;
+}
+
 .btn:hover{
     background: #3D9E60;
 }
