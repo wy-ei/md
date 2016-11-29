@@ -29,7 +29,7 @@ __粗体__
 
 插入图片
 
-![markdown](src/md.jpg)
+![markdown](static/md.jpg)
 
 插入代码
 
