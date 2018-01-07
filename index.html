@@ -5,69 +5,13 @@
     <meta charset="UTF-8">
     <title>markdown</title>
     <link rel="stylesheet" href="src/stylesheet/default.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.7.0/styles/vs.min.css">
+    <!-- <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.7.0/styles/vs.min.css"> -->
     <link rel="stylesheet" href="src/stylesheet/typo.css">
 </head>
 
 <body>
-    <div id="markdown">
-    <section class='edit-window'>
-        <header class='tool-bar'>
-            <a href='https://github.com/wy-ei/markdown-editor'>Markdown Editor</a>
-            <span class="btn" v-on:click="setting.domStyle='flex'">设置</span>
-            <span class="btn" v-show="setting.token" id="js-upload-image">上传图片</span>
-            <span class="btn" v-on:click.stop="toggleFullScreenEdit">{{ isFullScreenEdit ? "退出全屏":"全屏编辑" }}</span>
-            <span class="text">{{ sourceContent.length }} 字</span>
-        </header>
-        <div class='edit-box' id="js-drag-container">
-            <textarea id="js-textarea" v-model="sourceContent" v-on:keydown.tab.prevent.stop="tabHandler($event)" placeholder='在此输入' spellcheck='false' debounce="500"></textarea>
-        </div>
-    </section>
-    <section class='view-window'>
-        <header class='tool-bar'>
-            <span class="btn" v-on:click="toggleFullScreenPreview">{{ isFullScreenPreview ?"退出全屏":"全屏预览" }}</span>
-            <span class="btn" v-on:click="print">打印</span>
-        </header>
-        <div v-pre class='preview-box'>
-            <div id="dist" class="content typo"></div>
-        </div>
-    </section>
-    <section v-bind:style="{ display: setting.domStyle}" class="setting">
-        <div class="setting__panel">
-            <h2 class="setting__title">设置七牛云存储账号</h2>
-            <div class="setting__item">
-                <label for="space-name">空间名称</label>
-                <input v-model="setting.space" type="text" name="space-name">
-            </div>
-            <div class="setting__item">
-                <label for="ak">AK</label>
-                <input v-model="setting.ak" type="text" name="ak">
-            </div>
-            <div class="setting__item">
-                <label for="sk">SK</label>
-                <input v-model="setting.sk" type="text" name="sk">
-            </div>
-            <div class="setting__item">
-                <label for="domain">域名</label>
-                <div class="setting__item-domain" >
-                    <input v-model="setting.domain" type="text" name="domain">
-                </div>
-            </div>
-            <div>
-                <span v-on:click="saveSetting" class="btn">确定</span>
-                <span v-on:click="setting.domStyle='none'" class="btn">取消</span>
-            </div>
-        </div>
-    </section>
-    </div>
-    <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js"></script>
-    <script src="//cdn.bootcss.com/crypto-js/3.1.2/rollups/hmac-sha1.js"></script>
-    <script src="//cdn.bootcss.com/crypto-js/3.1.2/components/enc-base64.js"></script>
-    <script src="//cdn.bootcss.com/vue/2.0.5/vue.min.js"></script>
-    <script src="//cdn.bootcss.com/plupload/2.1.9/plupload.full.min.js"></script>
-    <script src="//cdn.bootcss.com/qiniu-js/1.0.17.1/qiniu.min.js"></script>
-    <script src="//cdn.bootcss.com/highlight.js/9.8.0/highlight.min.js"></script>
-    <script src='build/app.js'></script>
+    <div id="markdown"></div>
+    <script src='build/bundle.js'></script>
 </body>
 
 </html>

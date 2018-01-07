@@ -38,7 +38,7 @@ audio, canvas, video {
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body, button, input, select, textarea {
-  font: 400 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+  font: 400 1em/2 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
 button::-moz-focus-inner,
@@ -63,9 +63,9 @@ blockquote {
   position: relative;
   color: #999;
   font-weight: 400;
-  border-left: 1px solid #1abc9c;
+  border-left: 1px solid #999;
   padding-left: 1em;
-  margin: 1em 3em 1em 2em;
+  margin: 1em 0;
 }
 
 @media only screen and ( max-width: 640px ) {
@@ -202,7 +202,10 @@ figcaption {
 
 strong, b {
   font-weight: bold;
-  color: #000;
+  letter-spacing: 1px;
+  text-align: justify;
+  color: rgb(12, 12, 12);
+  text-shadow: rgb(127, 127, 127) 2px 2px 10px;
 }
 
 /* 可拖动文件添加拖动手势 */
@@ -241,7 +244,7 @@ strong, b {
 /* 保证块/段落之间的空白隔行 */
 .typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
 .typo-p, .typo-pre, .typo-ul, .typo-ol, .typo-dl, .typo-form, .typo-hr, .typo-table, blockquote {
-  margin-bottom: .8em
+  margin-bottom: 1.5em
 }
 
 h1, h2, h3, h4, h5, h6 {

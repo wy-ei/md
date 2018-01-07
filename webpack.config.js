@@ -1,21 +1,37 @@
-var webpack = require('webpack');
+let webpack = require('webpack');
+let path = require('path');
 
 module.exports = {
-    entry: {
-        app: 'src/script/app.js'
-    },
+    entry: './src/script/index.js',
     output: {
-        path: 'build/',
-        filename: '[name].js'
+        path: path.resolve(__dirname, "build"),
+        filename: 'bundle.js'
     },
-    resolve: {
-        root: __dirname
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress:{
-                warnings: true
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', "@babel/preset-react"]
+                    }
+                }
             }
-        })
-    ]
+        ]
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        publicPath: '/assets/',
+        compress: false,
+        port: 9000
+    }
+    // plugins: [
+    //     new webpack.optimize.UglifyJsPlugin({
+    //         compress: {
+    //             warnings: true
+    //         }
+    //     })
+    // ]
 }
