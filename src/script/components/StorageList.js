@@ -2,7 +2,10 @@ import React,{Component} from "react";
 import List from "./List/index";
 import ep from "../utils/ep";
 import Alert from "../utils/Alert";
+import message from "../utils/message";
 import Button from "./Button";
+
+const STORAGE_PREFIX = 'md-';
 
 class StorageList extends Component{
     constructor(props){
@@ -11,12 +14,28 @@ class StorageList extends Component{
             list: [],
             visible: false
         }
+        this.workspaceContent = '';
         this.clear = this.clear.bind(this);
         this.addEventListener();
+
+        this.timer = null;
     }
 
     componentDidMount(){
         this.restore();
+        // 三分钟存一次
+        this.timer = setInterval(()=>{
+            let content = this.workspaceContent;
+            ep.emit("storage:new", [content]);
+        }, 1000 * 60 * 3);
+
+        window.addEventListener('unload', ()=>{
+            ep.emit("storage:new", [this.workspaceContent]);
+        });
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timer);
     }
 
     close(){
@@ -29,11 +48,12 @@ class StorageList extends Component{
         });
 
         ep.on("storage:restore", (index) => {
-            Alert.alert('请确保当前工作区已经暂存，恢复后将覆盖', [{
+            Alert.alert('请确保当前工作区已经暂存，恢复后将覆盖。', [{
                 text: "确定",
                 callback: ()=>{
                     ep.emit('content:update', [this.state.list[index].content]);            
                 },
+                className: "btn--danger",
                 close: true
             },{
                 text: "取消",
@@ -43,90 +63,90 @@ class StorageList extends Component{
 
         ep.on("storage:new", (content) => {
             let list = this.state.list;
-            if(list.length > 0 && list[0].content === content){
+            if(!content || (list.length > 0 && list[0].content === content)){
                 return;
             }
-            list.unshift({
+            let item = {
                 content: content,
                 date: (new Date).valueOf()
-            });
+            };
+            list.unshift(item);
+
+            localStorage.setItem(STORAGE_PREFIX + item.date, JSON.stringify(item));
+
+            while(list.length >100){
+                let item = list.pop();
+                LS.removeItem(STORAGE_PREFIX + item.id);
+            }
 
             this.setState({
                 list: list
             });
-
-            this.store();
         });
-    }
 
-    store(){
-        let list = this.state.list;
-
-        let LS = window.localStorage;
-        let catalogue = LS.getItem('md-catalogue');
-        if(catalogue){
-            catalogue = JSON.parse(catalogue);
-        }else{
-            catalogue = [];
-        }
-
-        list.forEach(item => {
-            if(!item.stored){
-                catalogue.unshift('md-' + item.date);
-                let data = {
-                    content: item.content,
-                    date: item.date
-                }
-                LS.setItem('md-' + item.date, JSON.stringify(data));
-            }
-        });     
-        
-        while(catalogue.length > 100){
-            LS.removeItem(catalogue.pop());
-        }
-
-        LS.setItem('md-catalogue', JSON.stringify(catalogue));
+        ep.on('content:update', (content)=>{
+            this.workspaceContent = content;
+        });
     }
 
     restore(){
-
         let LS = window.localStorage;
-        let catalogue = LS.getItem('md-catalogue');
-        if(catalogue){
-            catalogue = JSON.parse(catalogue);
-        }else{
-            catalogue = [];
-        }
-        let list = catalogue.map(id => {
-            let content = JSON.parse(LS.getItem(id));
-            content.stored = true;
-            return content;
-        });
+        let list = this.state.list;
 
-        this.setState({list: list});
+        let length = LS.length;
+        for(let i=0;i<length;i++){
+            let id = LS.key(i);
+            if(id.slice(0,3) === 'md-'){
+                let content = JSON.parse(LS.getItem(id));
+                list.unshift(content);
+            }
+        }
 
         if(list.length>0){
+            list.sort((a, b)=>{
+                return b.date - a.date;
+            });
+            this.setState({list: list});
             ep.emit('content:update', [list[0].content]);            
         }
     }
 
     clear(){
-        let LS = window.localStorage;
-        let catalogue = LS.getItem('md-catalogue');
-        if(catalogue){
-            catalogue = JSON.parse(catalogue);
-        }else{
-            catalogue = [];
-        }
-        let list = catalogue.forEach(id => {
-            LS.removeItem(id);
-        });
+        Alert.alert("确认清空吗？清空后不可恢复。", [{
+            text: "确定",
+            close: true,
+            className: "btn--danger",
+            callback: () => {
+                let LS = window.localStorage;
+                let length = LS.length;
 
-        LS.setItem('md-catalogue', JSON.stringify([]));
-        
-        this.setState({list: []});
+                // localStorage 添加或者删除后长度会变化
+                let willBeRemovedId = [];
+                for(let i=0;i<length;i++){
+                    let id = LS.key(i);
+                    if(id.slice(0,3) === 'md-'){
+                        willBeRemovedId.push(id);
+                    }
+                }
+                willBeRemovedId.forEach(id => LS.removeItem(id));
+                this.setState({list: []});
+            }
+        },{
+            text: "取消",
+            close: true
+        }]);
+
+
     }
     
+    add(){
+        let list = this.state.list;
+        if(list.length !== 0 && this.workspaceContent === this.state.list[0].content){
+            message.info('最近一条历史记录，和当前工作区内容一致，无需新增');
+        }else{
+            ep.emit('storage:new', [this.workspaceContent]);
+        }
+    }
 
     render(){
         let {list, visible} = this.state;
@@ -143,8 +163,8 @@ class StorageList extends Component{
                             <input className="storage__search-input" />
                         </div> */}
                         <div>
-                            <Button text="清空历史记录" onClick={this.clear} />
-                            <Button text="新增历史记录" onClick={()=>{ep.emit("edit:store")}} />
+                            <Button className={'btn--danger'} text="清空历史记录" onClick={this.clear} />
+                            <Button text="新增历史记录" onClick={() => this.add()} />
                         </div>
                     </header>
                     <List className="storage__list" list={list}/>

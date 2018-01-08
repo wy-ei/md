@@ -23,15 +23,15 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-        publicPath: '/assets/',
+        publicPath: '/build/',
         compress: false,
         port: 9000
-    }
-    // plugins: [
-    //     new webpack.optimize.UglifyJsPlugin({
-    //         compress: {
-    //             warnings: true
-    //         }
-    //     })
-    // ]
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: true
+            }
+        })
+    ]
 }

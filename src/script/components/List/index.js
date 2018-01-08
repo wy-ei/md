@@ -22,7 +22,7 @@ class List extends Component{
             if(newlineIndex === -1){
                 newlineIndex = Math.min(20, item.content.length);
             }
-            let excerpt = item.content.slice(0, newlineIndex);
+            let excerpt = item.content.slice(0, Math.min(newlineIndex, 20));
             
             return (
             <li key={item.date} className="storage__list-item">

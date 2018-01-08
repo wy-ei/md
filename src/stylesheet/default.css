@@ -110,6 +110,16 @@ body{
     font-size: 12px;
     line-height: 1em;
 }
+.btn:hover{
+    background: #3D9E60;
+}
+
+.btn--danger{
+    background-color: #C62828;
+}
+.btn--danger:hover{
+    background-color: rgba(198, 40, 40, 0.7);
+}
 
 .btn--disable{
     opacity: 0.5;
@@ -128,9 +138,7 @@ body{
     line-height: 1em;
 }
 
-.btn:hover{
-    background: #3D9E60;
-}
+
 
 .fullscreen-edit .edit-window{
 	width: 100%;
@@ -348,6 +356,7 @@ body{
     bottom: 0;
     left: 0;
     width: 100%;
+    color: #3dbe60;
     box-sizing: border-box;
     border-top: 1px solid #ddd;
 }
@@ -356,18 +365,19 @@ body{
 /* Alert */
 .alert{
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .alert__box{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 300px;
     border-radius: 5px;
     background: #fff;
@@ -388,11 +398,34 @@ body{
     float: right;
 }
 
+.message__box{
+    position: fixed;
+    z-index: 10000;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px #e9e9e9;
+    background: #fff;
+}
+
+.message__box--info{
+    background-color: #3dbe60;
+    color: #fff;
+}
+.message__box--error{
+    color: #fff;
+    background-color: #ff5722;
+}
+
 @media print {
     body{
         height: initial;
     }
     .edit-window{
+        display: none;
+    }
+    .storage{
         display: none;
     }
     .view-window{

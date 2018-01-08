@@ -3,6 +3,7 @@ import Button from "./Button";
 import {LAYOUT} from "./Md";
 import Alert from "../utils/Alert";
 import ep from "../utils/ep";
+import throttle from "../utils/throttle";
 
 class EditWindow extends Component{
     constructor(props){
@@ -14,20 +15,8 @@ class EditWindow extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.toggleFullscreenEdit = this.toggleFullscreenEdit.bind(this);
         this.showStoreList = this.showStoreList.bind(this);
-        this.timer = null;
 
-        this.addEventListener();
-    }
-
-    addEventListener(){
-        ep.on('edit:store', ()=>{
-            let content = this.state.content;
-            if(content){
-                ep.emit("storage:new", [this.state.content]);                 
-            }else{
-                Alert.alert('当前内容为空，无需保存');
-            }
-        })
+        this.emitUpdate = throttle(this.emitUpdate, 500);
     }
 
     componentWillReceiveProps(props){
@@ -36,29 +25,14 @@ class EditWindow extends Component{
         })
     }
 
-    componentDidMount(){
-        // 三分钟存一次
-        this.timer = setInterval(()=>{
-            let content = this.state.content;
-            if(content && content!==this.oldContent){
-                this.oldContent = content;
-                ep.emit("storage:new", [content]);                
-            }
-        }, 1000 * 60 * 3);
-
-        window.addEventListener('unload', ()=>{
-            ep.emit('edit:store');
-        })
-    }
-
-    componentWillUnmount(){
-        clearInterval(this.timer);
+    emitUpdate(content){
+        ep.emit('content:update', [content]);
     }
 
     handleChange(){
         let content = this.textarea.value;
         this.setState({content: content});
-        ep.emit('content:update', [content]);
+        this.emitUpdate(content);
     }
     toggleFullscreenEdit(){
         let {fullscreenEdit} = this.props;
@@ -82,7 +56,7 @@ class EditWindow extends Component{
                 <header className='tool-bar'>
                     <a href='https://github.com/wy-ei/md'>Md</a>
                     <Button text={ fullscreenEdit ? "退出全屏":"全屏编辑" } onClick={this.toggleFullscreenEdit}/>
-                    <Button text="上传图片" onClick={()=>1}/>
+                    {/* <Button text="上传图片" onClick={()=>1}/> */}
                     <Button text="历史记录" onClick={this.showStoreList}/>
                     <span className="tool-bar__text">{ content.length } 字</span>
                 </header>

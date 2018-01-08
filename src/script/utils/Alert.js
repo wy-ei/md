@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom";
 import React, {Component} from "react";
 import Button from "../components/Button";
-import ep from "./ep";
+import EP from "ep.js";
+
+const ep = new EP;
 
 class AlertComponent extends Component{
     close(callback){
@@ -14,6 +16,7 @@ class AlertComponent extends Component{
         if(!btns){
             btns = [{text: '确定', close: true}];
         }
+        btns.reverse();
         return(
             <div className="alert">
                 <div className="alert__box">
@@ -29,7 +32,7 @@ class AlertComponent extends Component{
                                     this.close(btn.callback)
                                 }
                             }
-                            return  <Button key={btn.text} text={btn.text} onClick={callback}/>
+                            return  <Button className={btn.className} key={btn.text} text={btn.text} onClick={callback}/>
                         })
                     }
                     </div>

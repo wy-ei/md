@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import Button from "./Button";
-import markdownToHTML from "../utils/markdownToHTML";
+import marked from "marked";
 import {LAYOUT} from "./Md";
 import ep from "../utils/ep";
 
@@ -35,7 +35,11 @@ class PreviewWindow extends Component{
                     <Button text="打印" onClick={this.print}/>                    
                 </header>
                 <div className='preview-box'>
-                    <div id="dist" className="content typo" dangerouslySetInnerHTML={{__html: markdownToHTML(content)}}>
+                    <div 
+                        ref={(ref) => {this.container = ref}} 
+                        className="content typo"
+                        dangerouslySetInnerHTML={{__html: marked(content)}}
+                    >
                     </div>
                 </div>
             </section>

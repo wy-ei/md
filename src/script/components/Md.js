@@ -1,9 +1,8 @@
-import ep from "../utils/ep";
 import React,{Component} from "react";
 import EditWindow from "./EditWindow";
 import PreviewWindow from "./PreviewWindow";
 import StorageList from "./StorageList";
-
+import ep from "../utils/ep";
 
 const LAYOUT = {
     default: 'split',
@@ -27,7 +26,7 @@ class Md extends Component{
         let LS = window.localStorage;
         let text = LS.getItem('markdown-text');
         if(text){
-            ep.on("storage:new", text);
+            ep.emit('content:update', [text]);
             LS.removeItem('markdown-text');
         }
     }
@@ -79,7 +78,6 @@ class Md extends Component{
         )
     }
 }
-
 
 export {LAYOUT};
 export default Md;
