@@ -94,9 +94,10 @@ class StorageList extends Component{
         let list = this.state.list;
 
         let length = LS.length;
+        let r = /md-\d+$/;
         for(let i=0;i<length;i++){
             let id = LS.key(i);
-            if(id.slice(0,3) === 'md-'){
+            if(r.test(id)){
                 let content = JSON.parse(LS.getItem(id));
                 list.unshift(content);
             }
@@ -121,10 +122,11 @@ class StorageList extends Component{
                 let length = LS.length;
 
                 // localStorage 添加或者删除后长度会变化
+                let r = /md-\d+$/;
                 let willBeRemovedId = [];
                 for(let i=0;i<length;i++){
                     let id = LS.key(i);
-                    if(id.slice(0,3) === 'md-'){
+                    if(r.test(id)){
                         willBeRemovedId.push(id);
                     }
                 }

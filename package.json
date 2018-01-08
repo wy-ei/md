@@ -14,8 +14,6 @@
     "@babel/preset-env": "^7.0.0-beta.36",
     "@babel/preset-react": "^7.0.0-beta.36",
     "babel-loader": "^8.0.0-beta.0",
-    "eslint": "^4.15.0",
-    "eslint-plugin-react": "^7.5.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.0"
   },
@@ -25,12 +23,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wy-ei/markdown-editor.git"
+    "url": "git+https://github.com/wy-ei/md.git"
   },
   "author": "wy-ei",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wy-ei/markdown-editor/issues"
+    "url": "https://github.com/wy-ei/md/issues"
   },
-  "homepage": "https://github.com/wy-ei/markdown-editor#readme"
+  "homepage": "https://github.com/wy-ei/md#readme"
 }
