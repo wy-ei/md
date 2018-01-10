@@ -13,6 +13,10 @@ class List extends Component{
         ep.emit("storage:restore", [index]);
     }
 
+    delete(index){
+        ep.emit("storage:delete", [index]);
+    }
+
 
     render(){
         let {list, className} = this.props;
@@ -26,7 +30,10 @@ class List extends Component{
             
             return (
             <li key={item.date} className="storage__list-item">
-                <Button text="恢复" onClick={() => this.restore(index)}  />
+                <div className="storage__list-item-btns">
+                    <Button text="恢复" onClick={() => this.restore(index)}  />
+                    <Button text="删除" className={'btn--danger'} onClick={() => this.delete(index)}  />
+                </div>
                 <div>
                     <p className="text">{excerpt}</p>
                     <span className="date">{date(item.date, "%Y-%m-%d %I:%M:%s %p")}</span>
