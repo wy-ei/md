@@ -16,6 +16,14 @@ body{
 	font-family: "calluna-sans",Helvetica,Hiragino Sans GB,Microsoft JhengHei,WenQuanYi Micro Hei,sans-serif;
 }
 
+.md-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .edit-window,
 .view-window{
     position: absolute;
@@ -49,6 +57,7 @@ body{
 	width: 100%;
 	height: 100%;
     padding: 20px;
+    background: transparent;
 
     font-size: 14px;
 	resize: none;
@@ -83,7 +92,6 @@ body{
 
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background: #fff;
 
     line-height: 40px;
 
@@ -453,4 +461,9 @@ body{
     .tool-bar{
         display: none;
     }
+}
+
+
+.eye-protection-mode{
+    background-color: #a2d6a8;
 }

@@ -56,6 +56,10 @@ class EditWindow extends Component{
         }
     }
 
+    toggleEyeProtectionMode(){
+        ep.emit('md_eye_protection_mode:toggle');
+    }
+
     showStoreList(){
         ep.emit("storage_list:show");
     }
@@ -65,7 +69,7 @@ class EditWindow extends Component{
     }
 
     render(){
-        let {fullscreenEdit, width} = this.props;
+        let {fullscreenEdit, width, eyeProtectionMode} = this.props;
         let {content} = this.state;
 
         let padding = '20px'
@@ -79,6 +83,7 @@ class EditWindow extends Component{
                 <header className='tool-bar'>
                     <a href='https://github.com/wy-ei/md'>Md</a>
                     <Button text={ fullscreenEdit ? "退出全屏":"全屏编辑" } onClick={() => this.toggleFullscreenEdit()}/>
+                    <Button text={eyeProtectionMode ? '正常模式': '护眼模式'} onClick={() => this.toggleEyeProtectionMode()} />
                     {/* <Button text="上传图片" onClick={()=>1}/> */}
                     <Button text="新增暂存" onClick={() => this.add()} />
                     <Button text="查看暂存" onClick={() => this.showStoreList()}/>

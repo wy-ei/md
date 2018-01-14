@@ -13,13 +13,13 @@ const LAYOUT = {
 
 
 class Md extends Component{
-
     constructor(){
         super();
         this.state = {
             content: "",
             layout: LAYOUT.default,
-            windowWidth: 0
+            windowWidth: 0,
+            eyeProtectionMode: false
         }
         this.addEventListener();
     }
@@ -43,19 +43,23 @@ class Md extends Component{
             });
         });
 
+        ep.on('md_eye_protection_mode:toggle', () => {
+            this.setState({
+                eyeProtectionMode: !this.state.eyeProtectionMode
+            });
+        });
+
         window.addEventListener('resize', throttle(()=>{
             this.setState({windowWidth: window.innerWidth});
         }, 100));
     }
 
     componentDidMount(){
-        setTimeout(()=>{
-            this.setState({windowWidth: window.innerWidth});        
-        }, 2000);
+        this.setState({windowWidth: window.innerWidth});
     }
 
     render(){
-        let {content, layout, windowWidth} = this.state;
+        let {content, layout, windowWidth, eyeProtectionMode} = this.state;
 
         let fullscreenEdit = layout === LAYOUT.fullscreenEdit;
         let fullscreenPreview = layout === LAYOUT.fullscreenPreview;
@@ -70,8 +74,9 @@ class Md extends Component{
         return (
             <>
             <StorageList/>
-            <div className={layoutClassName}>
+            <div className={'md-container ' + layoutClassName + (eyeProtectionMode ? ' eye-protection-mode' : '' ) }>
                 <EditWindow
+                    eyeProtectionMode={eyeProtectionMode}
                     content={content}
                     width={fullscreenEdit ? windowWidth : windowWidth / 2}
                     fullscreenEdit={fullscreenEdit}
