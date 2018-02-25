@@ -1,11 +1,23 @@
 let webpack = require('webpack');
 let path = require('path');
 
+let env = 'dev'
+
+let plugins = env !== 'dev' ? 
+    [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
+    ] : []
+
 module.exports = {
     entry: './src/script/index.js',
     output: {
         path: path.resolve(__dirname, "build"),
         filename: 'bundle.js'
+
     },
     module: {
         rules: [
@@ -27,11 +39,5 @@ module.exports = {
         compress: false,
         port: 9000
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
-    ]
+    plugins: plugins
 }

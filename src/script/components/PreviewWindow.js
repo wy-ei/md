@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import Button from "./Button";
-import marked from "marked";
+import markdownToHTML from '../utils/markdownToHTML';
 import {LAYOUT} from "./Md";
 import ep from "../utils/ep";
 
@@ -18,7 +18,6 @@ class PreviewWindow extends Component{
         }
     }
 
-
     render(){
         let {fullscreenPreview, fullscreenEdit, content, width} = this.props;
 
@@ -35,11 +34,11 @@ class PreviewWindow extends Component{
                     <Button text="打印" onClick={window.print}/>                    
                 </header>
                 <div className='preview-box'>
-                    <div 
+                    <div
                         style={{padding: padding}}
                         ref={(ref) => {this.container = ref}} 
                         className="content typo"
-                        dangerouslySetInnerHTML={{__html: fullscreenEdit ? "" : marked(content)}}
+                        dangerouslySetInnerHTML={{__html: fullscreenEdit ? "" : markdownToHTML(content)}}
                     >
                     </div>
                 </div>

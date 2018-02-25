@@ -348,6 +348,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Responsive images */
-.typo img {
+.typo img { 
   max-width: 100%;
+  display: inline-block;
 }
+
