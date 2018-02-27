@@ -1,7 +1,7 @@
 let webpack = require('webpack');
 let path = require('path');
 
-let env = 'dev'
+let env = 'pro'
 
 let plugins = env !== 'dev' ? 
     [
