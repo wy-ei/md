@@ -1,10 +1,12 @@
 import React,{Component} from "react";
 import Button from "./Button";
+import Editor from "./Editor";
 import {LAYOUT} from "./Md";
 import Alert from "../utils/Alert";
 import ep from "../utils/ep";
 import throttle from "../utils/throttle";
 import message from "../utils/message";
+
 
 class EditWindow extends Component{
     constructor(props){
@@ -13,12 +15,13 @@ class EditWindow extends Component{
             content: props.content
         }
         this.lastSavedContent = '';
-        this.handleChange = this.handleChange.bind(this);
+        this.onContentChange = this.onContentChange.bind(this);
 
         this.emitUpdate = throttle(this.emitUpdate, 1000);        
     }
 
     componentDidMount(){
+
         window.addEventListener('unload', ()=>{
             ep.emit("storage:save", [this.state.content]);
         });
@@ -30,6 +33,7 @@ class EditWindow extends Component{
                 this.lastSavedContent = content;
             }
         }, 3000);
+        
     }
 
     componentWillReceiveProps(props){
@@ -42,8 +46,7 @@ class EditWindow extends Component{
         ep.emit('content:update', [content]);
     }
 
-    handleChange(){
-        let content = this.textarea.value;
+    onContentChange(content){
         this.setState({content: content});
         this.emitUpdate(content);
     }
@@ -56,10 +59,6 @@ class EditWindow extends Component{
         }
     }
 
-    toggleEyeProtectionMode(){
-        ep.emit('md_eye_protection_mode:toggle');
-    }
-
     showStoreList(){
         ep.emit("storage_list:show");
     }
@@ -69,33 +68,22 @@ class EditWindow extends Component{
     }
 
     render(){
-        let {fullscreenEdit, width, eyeProtectionMode} = this.props;
+        let {fullscreenEdit} = this.props;
         let {content} = this.state;
 
-        let padding = '20px'
-        if(width > 800){
-            width -= 800;
-            padding = padding + ' ' + (width / 2) + 'px'; 
-        }
 
         return (
             <section className='edit-window'>
                 <header className='tool-bar'>
                     <a href='https://github.com/wy-ei/md'>Md</a>
                     <Button text={ fullscreenEdit ? "退出全屏":"全屏编辑" } onClick={() => this.toggleFullscreenEdit()}/>
-                    <Button text={eyeProtectionMode ? '正常模式': '护眼模式'} onClick={() => this.toggleEyeProtectionMode()} />
                     {/* <Button text="上传图片" onClick={()=>1}/> */}
                     <Button text="新增暂存" onClick={() => this.add()} />
                     <Button text="查看暂存" onClick={() => this.showStoreList()}/>
                     <span className="tool-bar__text">{ content.length } 字</span>
                 </header>
                 <div className='edit-box'>
-                    <textarea
-                        style={{padding: padding}}
-                        ref={(ref) => {this.textarea=ref }}
-                        value={content}
-                        onChange={this.handleChange}>
-                    </textarea>
+                    <Editor content={content} onContentChange={this.onContentChange} />
                 </div>
             </section>
         )

@@ -7,8 +7,15 @@ import ep from "../utils/ep";
 class PreviewWindow extends Component{
     constructor(props){
         super();
+        this.addEventListener();        
     }
 
+
+    addEventListener(){
+        ep.on("preview:update", () => {
+            this.forceUpdate();
+        });
+    }
     toggleFullscreenPreview(){
         let {fullscreenPreview} = this.props;
         if(fullscreenPreview){
@@ -18,14 +25,20 @@ class PreviewWindow extends Component{
         }
     }
 
-    render(){
-        let {fullscreenPreview, fullscreenEdit, content, width} = this.props;
-
-        let padding = '20px'
-        if(width > 800){
-            width -= 800;
-            padding = padding + ' ' + (width / 2) + 'px'; 
+    componentDidUpdate(){
+        let {content, fullscreenEdit} = this.props;
+        if(fullscreenEdit){
+            return;
         }
+        
+        markdownToHTML(content, (err, content)=>{
+            this.container.innerHTML = content;
+        })
+    }
+
+    render(){
+        let {fullscreenPreview, content} = this.props;
+
 
         return (
             <section className='view-window'>
@@ -35,10 +48,8 @@ class PreviewWindow extends Component{
                 </header>
                 <div className='preview-box'>
                     <div
-                        style={{padding: padding}}
                         ref={(ref) => {this.container = ref}} 
                         className="content typo"
-                        dangerouslySetInnerHTML={{__html: fullscreenEdit ? "" : markdownToHTML(content)}}
                     >
                     </div>
                 </div>

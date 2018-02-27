@@ -7,7 +7,7 @@
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 html {
   color: #333;
-  background: #fff;
+  background: #eee;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-rendering: optimizelegibility;
@@ -172,7 +172,7 @@ mark {
 
 /* 代码片断 */
 pre, code, pre tt {
-  font-family: Courier, 'Courier New', monospace;
+  font-family: 'Source Code Pro', Courier, 'Courier New', monospace;
 }
 
 pre {
@@ -180,8 +180,8 @@ pre {
   border: 1px solid #ddd;
   padding: 1em 1.5em;
   display: block;
-  -webkit-overflow-scrolling: touch;
   overflow: auto;
+  line-height: 1.3em;
 }
 
 /* 一致化 horizontal rule */

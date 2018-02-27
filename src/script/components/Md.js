@@ -18,8 +18,7 @@ class Md extends Component{
         this.state = {
             content: "",
             layout: LAYOUT.default,
-            windowWidth: 0,
-            eyeProtectionMode: false
+            windowWidth: 0
         }
         this.addEventListener();
     }
@@ -34,32 +33,29 @@ class Md extends Component{
         ep.on('md_layout:update', (layout) => {
             this.setState({
                 layout: layout
+            }, ()=>{
+                if(layout === LAYOUT.fullscreenEdit || layout === LAYOUT.default){
+                    ep.emit('editor:resize');                
+                }
             });
         });
 
         ep.on('md_layout:reset', (layout) => {
             this.setState({
                 layout: LAYOUT.default
-            });
-        });
-
-        ep.on('md_eye_protection_mode:toggle', () => {
-            this.setState({
-                eyeProtectionMode: !this.state.eyeProtectionMode
+            }, () => {
+                ep.emit('editor:resize');                
             });
         });
 
         window.addEventListener('resize', throttle(()=>{
-            this.setState({windowWidth: window.innerWidth});
+            ep.emit('editor:resize');
         }, 100));
     }
 
-    componentDidMount(){
-        this.setState({windowWidth: window.innerWidth});
-    }
 
     render(){
-        let {content, layout, windowWidth, eyeProtectionMode} = this.state;
+        let {content, layout} = this.state;
 
         let fullscreenEdit = layout === LAYOUT.fullscreenEdit;
         let fullscreenPreview = layout === LAYOUT.fullscreenPreview;
@@ -74,15 +70,12 @@ class Md extends Component{
         return (
             <>
             <StorageList/>
-            <div className={'md-container ' + layoutClassName + (eyeProtectionMode ? ' eye-protection-mode' : '' ) }>
+            <div className={'md-container ' + layoutClassName }>
                 <EditWindow
-                    eyeProtectionMode={eyeProtectionMode}
                     content={content}
-                    width={fullscreenEdit ? windowWidth : windowWidth / 2}
                     fullscreenEdit={fullscreenEdit}
                 />
                 <PreviewWindow
-                    width={fullscreenPreview ? windowWidth : windowWidth / 2}
                     fullscreenEdit={fullscreenEdit}
                     fullscreenPreview={fullscreenPreview}
                     content={content}

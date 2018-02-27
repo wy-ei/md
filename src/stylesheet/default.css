@@ -51,27 +51,40 @@ body{
 	padding-top: 40px;
 }
 
+.edit-window .editor-container{
+	width: 100%;
+    height: 100%;
+    padding: 5px 0;
+}
 
-.edit-window textarea{
-	box-sizing:border-box;
+.edit-window .text-editor{
 	width: 100%;
 	height: 100%;
-    padding: 20px;
-    background: transparent;
-
     font-size: 14px;
-	resize: none;
-
+	line-height: 3em;
+}
+.edit-window textarea{
+    width: 100%;
+	height: 100%;
+    background: transparent;
+    resize: none;
+    padding: 0 10px;
+    box-sizing: border-box;
 	color: #444;
 	border: 0;
 	outline: medium;
+}
 
-	line-height: 1.7em;
+.edit-window .scrollbar{
+    position: absolute;
+    right: 0;
+    width: 10px;
+    background: #c1c1c1;
 }
 
 .preview-box .content{
     box-sizing:border-box;
-    padding: 20px;
+    padding: 0 10px;
     font-size: 14px;
     height: 100%;
     overflow-y: auto;
@@ -463,11 +476,6 @@ body{
     .tool-bar{
         display: none;
     }
-}
-
-
-.eye-protection-mode{
-    background-color: #a2d6a8;
 }
 
 
