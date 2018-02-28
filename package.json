@@ -4,21 +4,24 @@
   "description": "a simple markdown editor",
   "main": "index.html",
   "dependencies": {
+    "css-loader": "^0.28.10",
     "ep.js": "^1.0.0",
     "marked": "^0.3.9",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "style-loader": "^0.20.2",
+    "webpack-dev-server": "^2.x"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.36",
     "@babel/preset-env": "^7.0.0-beta.36",
     "@babel/preset-react": "^7.0.0-beta.36",
     "babel-loader": "^8.0.0-beta.0",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.10.0"
+    "extract-text-webpack-plugin": "^3.0.2",
+    "webpack": "^3.11.0"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server"
   },
   "repository": {

@@ -6,7 +6,8 @@ let theme = {
     inherit: true,
     rules: [],
     colors: {
-        'editor.foreground': '#444444'
+        'editor.foreground': '#444444',
+        'editor.background': '#fafafa'        
     }
 };
 
@@ -75,7 +76,9 @@ class Editor extends Component{
                 scrollbar: {
                     useShadows: false
                 },
-                lineNumbers: 'off'
+                lineNumbers: 'off',
+                renderLineHighlight: 'none',
+                roundedSelection: false
             });
 
             _this.editor = editor;

@@ -1,16 +1,25 @@
 let webpack = require('webpack');
 let path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-let env = 'pro'
+const PROD = 'production';
+const DEV = 'development';
 
-let plugins = env !== 'dev' ? 
-    [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
-    ] : []
+//let mode = DEV;
+let mode = PROD;
+
+let plugins = [
+    new ExtractTextPlugin("styles.css")
+];
+
+
+if(mode == 'production'){
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }));
+}
 
 module.exports = {
     entry: './src/script/index.js',
@@ -20,23 +29,35 @@ module.exports = {
 
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', "@babel/preset-react"]
+                        presets: ['@babel/preset-env', "@babel/preset-react"],
+                        cacheDirectory: false
                     }
                 }
-            }
+            },
+            {   
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [{
+                        loader: "css-loader",
+                        options: {
+                            minimize: mode == DEV ? false : true
+                        }
+                    }]
+                })
+            },
         ]
     },
     devtool: 'inline-source-map',
     devServer: {
-        publicPath: '/build/',
         compress: false,
+        publicPath: "/build/",
         port: 9000
     },
     plugins: plugins
