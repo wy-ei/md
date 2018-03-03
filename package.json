@@ -9,6 +9,7 @@
     "marked": "^0.3.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-markdown": "^3.2.2",
     "style-loader": "^0.20.2",
     "webpack-dev-server": "^2.x"
   },

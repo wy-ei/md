@@ -41,11 +41,6 @@ body, button, input, select, textarea {
   font: 400 1em/2 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
 
 /* 去掉各Table cell 的边距并让其边重合 */
 table {
@@ -152,13 +147,8 @@ ins, a {
   text-decoration: none;
 }
 
-/* 专名号：虽然 u 已经重回 html5 Draft，但在所有浏览器中都是可以使用的，
- * 要做到更好，向后兼容的话，添加 class="typo-u" 来显示专名号
- * 关于 <u> 标签：http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-u-element
- * 被放弃的是 4，之前一直搞错 http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
- * 一篇关于 <u> 标签的很好文章：http://html5doctor.com/u-element/
- */
-u, .typo-u {
+
+u {
   text-decoration: underline;
 }
 
@@ -178,7 +168,6 @@ pre, code, pre tt {
 pre {
   background: #f8f8f8;
   border: 1px solid #ddd;
-  padding: 1em 1.5em;
   display: block;
   overflow: auto;
   line-height: 1.3em;
@@ -242,8 +231,7 @@ strong, b {
 }
 
 /* 保证块/段落之间的空白隔行 */
-.typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
-.typo-p, .typo-pre, .typo-ul, .typo-ol, .typo-dl, .typo-form, .typo-hr, .typo-table, blockquote {
+.typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table, blockquote {
   margin-bottom: 1.5em
 }
 
@@ -255,65 +243,64 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
-.typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6,
-.typo-h1, .typo-h2, .typo-h3, .typo-h4, .typo-h5, .typo-h6 {
+.typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6 {
   margin-top: .6em;
   margin-bottom: 0.6em;
   line-height: 1;
 }
 
-.typo h1, .typo-h1 {
+.typo h1 {
   font-size: 2em;
 }
 
-.typo h2, .typo-h2 {
+.typo h2 {
   font-size: 1.8em;
 }
 
-.typo h3, .typo-h3 {
+.typo h3 {
   font-size: 1.6em;
 }
 
-.typo h4, .typo-h4 {
+.typo h4 {
   font-size: 1.4em;
 }
 
-.typo h5, .typo h6, .typo-h5, .typo-h6 {
+.typo h5, .typo h6 {
   font-size: 1.2em;
 }
 
 /* 在文章中，应该还原 ul 和 ol 的样式 */
-.typo ul, .typo-ul {
+.typo ul{
   margin-left: 1.3em;
   list-style: disc;
 }
 
-.typo ol, .typo-ol {
+.typo ol{
   list-style: decimal;
   margin-left: 1.9em;
 }
 
-.typo li ul, .typo li ol, .typo-ul ul, .typo-ul ol, .typo-ol ul, .typo-ol ol {
+.typo li ul, .typo li ol{
   margin-bottom: 0.8em;
   margin-left: 2em;
 }
 
-.typo li ul, .typo-ul ul, .typo-ol ul {
+.typo li ul{
   list-style: circle;
 }
 
 /* 同 ul/ol，在文章中应用 table 基本格式 */
-.typo table th, .typo table td, .typo-table th, .typo-table td, .typo table caption {
+.typo table th, .typo table td, .typo table caption {
   border: 1px solid #ddd;
   padding: 0.5em 1em;
   color: #666;
 }
 
-.typo table th, .typo-table th {
+.typo table th {
   background: #fbfbfb;
 }
 
-.typo table thead th, .typo-table thead th {
+.typo table thead th{
   background: #f1f1f1;
 }
 
@@ -322,29 +309,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 去除 webkit 中 input 和 textarea 的默认样式  */
-.typo-input, .typo-textarea {
+.typo-textarea {
   -webkit-appearance: none;
   border-radius: 0;
 }
 
-.typo-em, .typo em, legend, caption {
+.typo em, legend, caption {
   color: #000;
   font-weight: inherit;
-}
-
-/* 着重号，只能在少量（少于100个字符）且全是全角字符的情况下使用 */
-.typo-em {
-  position: relative;
-}
-
-.typo-em:after {
-  position: absolute;
-  top: 0.65em;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  content: "・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・";
 }
 
 /* Responsive images */
@@ -353,3 +325,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
 }
 
+.typo li input[type=checkbox]{
+  margin: 0 0.5em 0.25em -1.4em;
+  vertical-align: middle;
+}

@@ -22,10 +22,6 @@ class StorageList extends Component{
         this.timer = null;
     }
 
-    componentDidMount(){
-        this.read();
-    }
-
     componentWillUnmount(){
         clearInterval(this.timer);
     }
@@ -35,6 +31,11 @@ class StorageList extends Component{
     }
 
     addEventListener(){
+        
+        ep.on("storage:init", ()=>{
+            this.read();
+        });
+
         ep.on("storage_list:show", ()=>{
             this.setState({visible: true});
         });
@@ -43,7 +44,7 @@ class StorageList extends Component{
             Alert.alert('请确保当前工作区已经暂存，恢复后将覆盖。', [{
                 text: "确定",
                 callback: ()=>{
-                    ep.emit('content:update', [this.state.list[index].content]);            
+                    ep.emit('content:replace', [this.state.list[index].content]);            
                 },
                 className: "btn--danger",
                 close: true
@@ -136,7 +137,7 @@ class StorageList extends Component{
 
         let text = LS.getItem('markdown-text');
         if(text){
-            ep.emit('content:update', [text]);
+            ep.emit('content:replace', [text]);
         }
     }
 

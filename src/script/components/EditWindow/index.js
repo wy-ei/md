@@ -1,11 +1,11 @@
 import React,{Component} from "react";
-import Button from "./Button";
+import Button from "../Button";
 import Editor from "./Editor";
-import {LAYOUT} from "./Md";
-import Alert from "../utils/Alert";
-import ep from "../utils/ep";
-import throttle from "../utils/throttle";
-import message from "../utils/message";
+import {LAYOUT} from "../Md";
+import Alert from "../../utils/Alert";
+import ep from "../../utils/ep";
+import throttle from "../../utils/throttle";
+import message from "../../utils/message";
 
 
 class EditWindow extends Component{
@@ -39,7 +39,7 @@ class EditWindow extends Component{
     componentWillReceiveProps(props){
         this.setState({
             content: props.content 
-        })
+        });
     }
 
     emitUpdate(content){

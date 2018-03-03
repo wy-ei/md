@@ -1,6 +1,6 @@
 import React,{Component} from "react";
-import EditWindow from "./EditWindow";
-import PreviewWindow from "./PreviewWindow";
+import EditWindow from "./EditWindow/index";
+import PreviewWindow from "./PreviewWindow/index";
 import StorageList from "./StorageList";
 import ep from "../utils/ep";
 import throttle from "../utils/throttle";
@@ -17,14 +17,13 @@ class Md extends Component{
         super();
         this.state = {
             content: "",
-            layout: LAYOUT.default,
-            windowWidth: 0
+            layout: LAYOUT.default
         }
         this.addEventListener();
     }
 
     addEventListener(){
-        ep.on('content:update', (content)=>{
+        ep.any(['content:update', 'content:replace'], (content)=>{
             this.setState({
                 content: content
             });
@@ -53,6 +52,9 @@ class Md extends Component{
         }, 100));
     }
 
+    componentDidMount(){
+        ep.emit('storage:init');
+    }
 
     render(){
         let {content, layout} = this.state;

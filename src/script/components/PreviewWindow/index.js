@@ -1,8 +1,11 @@
 import React,{Component} from "react";
-import Button from "./Button";
-import markdownToHTML from '../utils/markdownToHTML';
-import {LAYOUT} from "./Md";
-import ep from "../utils/ep";
+import Button from "../Button";
+const ReactMarkdown = require('react-markdown')
+import {LAYOUT} from "../Md";
+import ep from "../../utils/ep";
+import renderer from './renderer';
+
+
 
 class PreviewWindow extends Component{
     constructor(props){
@@ -25,19 +28,8 @@ class PreviewWindow extends Component{
         }
     }
 
-    componentDidUpdate(){
-        let {content, fullscreenEdit} = this.props;
-        if(fullscreenEdit){
-            return;
-        }
-        
-        markdownToHTML(content, (err, content)=>{
-            this.container.innerHTML = content;
-        })
-    }
-
     render(){
-        let {fullscreenPreview, content} = this.props;
+        let {fullscreenPreview, content, fullscreenEdit} = this.props;
 
 
         return (
@@ -47,11 +39,13 @@ class PreviewWindow extends Component{
                     <Button text="打印" onClick={window.print}/>                    
                 </header>
                 <div className='preview-box'>
-                    <div
-                        ref={(ref) => {this.container = ref}} 
+                    <ReactMarkdown 
+                        source={fullscreenEdit ? "" : content}
                         className="content typo"
-                    >
-                    </div>
+                        renderers={renderer}
+                        escapeHtml={false}
+                        vScrollBarAlwaysVisible={true}
+                    />
                 </div>
             </section>
         )

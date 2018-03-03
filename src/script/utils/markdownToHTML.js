@@ -1,4 +1,6 @@
 import marked from 'marked';
+import LazyLoad from '../lib/lazyload';
+import ep from "./ep";
 
 let renderer = new marked.Renderer();
 
@@ -28,11 +30,22 @@ renderer.image = function(href, title, text){
 }
 
 marked.setOptions({
-    highlight: function(code, lang, callback) {
-        if(!window.monaco){
-            callback(null, code);
+    highlight: function (code, lang) {
+
+        if(!window.MD.hljs_loading){
+            window.MD.hljs_loading = true;
+            LazyLoad.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/atom-one-light.min.css');
+            LazyLoad.js(['https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js'], function(){
+                let blocks = document.querySelectorAll('pre code');
+                    for(let i=0;i<blocks.length;i++){
+                    hljs.highlightBlock(blocks[i]);
+                }
+            });
+        }
+        if(window.hljs){
+            return hljs.highlightAuto(code).value;
         }else{
-            monaco.editor.colorize(code, lang, {tableSize: 4}).then(highlightedCode => callback(null, highlightedCode));
+            return code;
         }
     }
 });
