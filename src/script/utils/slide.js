@@ -28,7 +28,6 @@ class Slide{
             dynamicEl: dynamicEl
         });
 
-        //console.log(index)
         setTimeout(()=>{
             $('#lg-container').data('lightGallery').slide(index);
         })

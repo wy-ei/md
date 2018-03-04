@@ -1,15 +1,6 @@
 import React, {Component} from "react";
 import ep from "../../utils/ep";
 
-// window.require.config({ paths: { 'cm': 'https://cdn.bootcss.com/codemirror/5.35.0/'}});
-
-// window.requirejs.config({paths:{
-//     cm: 'https://cdn.bootcss.com/codemirror/5.35.0',
-//     'cm/lib': 'https://cdn.bootcss.com/codemirror/5.35.0'}
-// });
-
-
-let highlight_lib_map = {};
 
 class Editor extends Component{
     constructor(props){
@@ -20,6 +11,7 @@ class Editor extends Component{
 
     addEventListener(){
         ep.on('editor:resize', ()=>{
+            this.editor.resize(); 
         });
 
         ep.on("content:replace", (content) => {
@@ -36,6 +28,11 @@ class Editor extends Component{
         });
     }
 
+    componentWillReceiveProps(props){
+        if(this.props.padding !== props.padding){
+            this.editor.renderer.setPadding(props.padding);     
+        }
+    }
 
     componentDidMount(){
         let _this = this;
@@ -45,10 +42,13 @@ class Editor extends Component{
                 wrap: true,
                 mode: "ace/mode/markdown",
                 showGutter: false,
-                showPrintMargin: false
+                showPrintMargin: false,
+                highlightActiveLine: false
             });
 
            _this.editor = editor;
+
+           editor.renderer.setPadding(100);
 
             editor.session.on('change', () => {
                 let value = editor.getValue();

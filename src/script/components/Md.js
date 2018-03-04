@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import EditWindow from "./EditWindow/index";
 import PreviewWindow from "./PreviewWindow/index";
 import StorageList from "./StorageList";
+
 import ep from "../utils/ep";
 import throttle from "../utils/throttle";
 
@@ -48,7 +49,7 @@ class Md extends Component{
         });
 
         window.addEventListener('resize', throttle(()=>{
-            ep.emit('editor:resize');
+            this.forceUpdate();
         }, 100));
     }
 

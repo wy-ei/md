@@ -5,8 +5,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const PROD = 'production';
 const DEV = 'development';
 
-let mode = DEV;
-// let mode = PROD;
+// let mode = DEV;
+let mode = PROD;
 
 let plugins = [
     new ExtractTextPlugin("styles.css")

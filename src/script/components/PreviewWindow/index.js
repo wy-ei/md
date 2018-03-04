@@ -1,10 +1,10 @@
 import React,{Component} from "react";
 import Button from "../Button";
-const ReactMarkdown = require('react-markdown')
+const Markdown = require('react-markdown')
 import {LAYOUT} from "../Md";
 import ep from "../../utils/ep";
+import viewport from "../../utils/viewport";
 import renderer from './renderer';
-
 
 
 class PreviewWindow extends Component{
@@ -31,6 +31,19 @@ class PreviewWindow extends Component{
     render(){
         let {fullscreenPreview, content, fullscreenEdit} = this.props;
 
+        let width = viewport.width();
+
+        if(!fullscreenPreview){
+            width = width / 2;
+        }
+
+        let style = {
+            padding: '0'
+        }
+        if(width > 800){
+            width -= 800;
+            style.padding = style.padding + ' ' + (width / 2) + 'px'; 
+        }
 
         return (
             <section className='view-window'>
@@ -39,13 +52,18 @@ class PreviewWindow extends Component{
                     <Button text="打印" onClick={window.print}/>                    
                 </header>
                 <div className='preview-box'>
-                    <ReactMarkdown 
-                        source={fullscreenEdit ? "" : content}
-                        className="content typo"
-                        renderers={renderer}
-                        escapeHtml={false}
-                        vScrollBarAlwaysVisible={true}
-                    />
+                    <div
+                        className="markdown-content-wrap"
+                        style={style}
+                    >
+                        <Markdown
+                            source={fullscreenEdit ? "" : content}
+                            className="content typo"
+                            renderers={renderer}
+                            escapeHtml={false}
+                            vScrollBarAlwaysVisible={true}
+                        />
+                    </div>
                 </div>
             </section>
         )

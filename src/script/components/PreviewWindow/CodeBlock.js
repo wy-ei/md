@@ -9,7 +9,7 @@ class CodeBlock extends React.PureComponent {
     }
 
     load_hljs(callback){
-        LazyLoad.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/atom-one-light.min.css');                      
+        LazyLoad.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/vs.min.css');                      
         LazyLoad.js(['https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js'], ()=>{
             callback && callback();
         });

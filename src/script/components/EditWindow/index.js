@@ -6,6 +6,7 @@ import Alert from "../../utils/Alert";
 import ep from "../../utils/ep";
 import throttle from "../../utils/throttle";
 import message from "../../utils/message";
+import viewport from "../../utils/viewport";
 
 
 class EditWindow extends Component{
@@ -71,19 +72,29 @@ class EditWindow extends Component{
         let {fullscreenEdit} = this.props;
         let {content} = this.state;
 
+        let width = viewport.width();
+
+        if(!fullscreenEdit){
+            width = width / 2;
+        }
+
+        let padding = 10;
+        if(width > 800){
+            width -= 800;
+            padding = width / 2;
+        }
 
         return (
             <section className='edit-window'>
                 <header className='tool-bar'>
-                    <a href='https://github.com/wy-ei/md'>Md</a>
+                    <a href='https://github.com/wy-ei/md'>MD</a>
                     <Button text={ fullscreenEdit ? "退出全屏":"全屏编辑" } onClick={() => this.toggleFullscreenEdit()}/>
-                    {/* <Button text="上传图片" onClick={()=>1}/> */}
                     <Button text="新增暂存" onClick={() => this.add()} />
                     <Button text="查看暂存" onClick={() => this.showStoreList()}/>
                     <span className="tool-bar__text">{ content.length } 字</span>
                 </header>
                 <div className='edit-box'>
-                    <Editor content={content} onContentChange={this.onContentChange} />
+                    <Editor padding={padding} content={content} onContentChange={this.onContentChange} />
                 </div>
             </section>
         )

@@ -21,10 +21,13 @@ class Image extends React.PureComponent {
                     style.display = 'block';
                     style.margin = '0 auto';
                 }else{
-                    key = key.replace(/-(\w)/, (a,$0) => {
-                        return $0.toUpperCase();
-                    });
-                    style[key] = value;
+                    if(value){
+                        key = key.replace(/-(\w)/g, (a,$0) => {
+                            return $0.toUpperCase();
+                        });
+                        style[key] = value;
+                    }
+
                 }
             });
         }
