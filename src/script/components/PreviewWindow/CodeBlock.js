@@ -10,17 +10,23 @@ class CodeBlock extends React.PureComponent {
 
     componentDidMount() {
         if(window.monaco){
-            monaco.editor.colorizeElement(this.code, {tableSize: 4});
+            this.highlight();
         }else{
             ep.once('codeblock:highlight', ()=>{
-                monaco.editor.colorizeElement(this.code, {tableSize: 4});
+                this.highlight();
             });
         }
         
     }
 
+    highlight(){
+        if(this.code.firstChild && this.code.firstChild.nodeValue.trim()){
+            window.monaco && monaco.editor.colorizeElement(this.code, {tableSize: 4});            
+        }
+    }
+
     componentDidUpdate() {
-        window.monaco && monaco.editor.colorizeElement(this.code, {tableSize: 4});
+        this.highlight();
     }
 
     render() {
