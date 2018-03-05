@@ -6,7 +6,6 @@ import Alert from "../../utils/Alert";
 import ep from "../../utils/ep";
 import throttle from "../../utils/throttle";
 import message from "../../utils/message";
-import viewport from "../../utils/viewport";
 
 
 class EditWindow extends Component{
@@ -72,17 +71,6 @@ class EditWindow extends Component{
         let {fullscreenEdit} = this.props;
         let {content} = this.state;
 
-        let width = viewport.width();
-
-        if(!fullscreenEdit){
-            width = width / 2;
-        }
-
-        let padding = 10;
-        if(width > 800){
-            width -= 800;
-            padding = width / 2;
-        }
 
         return (
             <section className='edit-window'>
@@ -94,7 +82,7 @@ class EditWindow extends Component{
                     <span className="tool-bar__text">{ content.length } 字</span>
                 </header>
                 <div className='edit-box'>
-                    <Editor padding={padding} content={content} onContentChange={this.onContentChange} />
+                    <Editor content={content} onContentChange={this.onContentChange} />
                 </div>
             </section>
         )

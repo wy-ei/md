@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import LazyLoad from "../../lib/lazyload";
+import ep from "../../utils/ep";
 
 
 class CodeBlock extends React.PureComponent {
@@ -8,38 +8,19 @@ class CodeBlock extends React.PureComponent {
         super(props);
     }
 
-    load_hljs(callback){
-        LazyLoad.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/vs.min.css');                      
-        LazyLoad.js(['https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js'], ()=>{
-            callback && callback();
-        });
-    }
-
     componentDidMount() {
-
-        if(CodeBlock.hljs_state == 'wait_load'){
-            CodeBlock.hljs_state = 'loading';
-            this.load_hljs(()=>{
-                CodeBlock.hljs_state = 'loaded';
-                CodeBlock.wait_highlight_queue.forEach(code => {
-                    hljs.highlightBlock(code);
-                });
+        if(window.monaco){
+            monaco.editor.colorizeElement(this.code, {tableSize: 4});
+        }else{
+            ep.once('codeblock:highlight', ()=>{
+                monaco.editor.colorizeElement(this.code, {tableSize: 4});
             });
         }
-
-        if(CodeBlock.hljs_state == 'loading'){
-            CodeBlock.wait_highlight_queue.push(this.code);
-        }
-
-        if(CodeBlock.hljs_state == 'loaded'){
-            hljs.highlightBlock(this.code);
-        }
+        
     }
 
     componentDidUpdate() {
-        if(CodeBlock.hljs_state == 'loaded'){
-            hljs.highlightBlock(this.code);            
-        }
+        window.monaco && monaco.editor.colorizeElement(this.code, {tableSize: 4});
     }
 
     render() {
@@ -47,6 +28,7 @@ class CodeBlock extends React.PureComponent {
             <pre>
                 <code
                     ref={ref=>this.code = ref}
+                    data-lang={this.props.language}
                     className={`language-${this.props.language}`}
                 >
                 {this.props.value}
@@ -55,8 +37,5 @@ class CodeBlock extends React.PureComponent {
         )
     }
 }
-
-CodeBlock.hljs_state = 'wait_load';
-CodeBlock.wait_highlight_queue = [];
 
 export default CodeBlock;

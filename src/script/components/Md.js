@@ -49,7 +49,7 @@ class Md extends Component{
         });
 
         window.addEventListener('resize', throttle(()=>{
-            this.forceUpdate();
+            ep.emit('editor:resize');
         }, 100));
     }
 
