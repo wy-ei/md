@@ -1,24 +1,16 @@
 @charset "utf-8";
-/*
- * typo.css
- * https://github.com/sofish/typo.css
-*/
 
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
 html {
-  color: #333;
-  background: #fffffe;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-rendering: optimizelegibility;
+    color: #333;
+    background: #fff;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
-/* 如果你的项目仅支持 IE9+ | Chrome | Firefox 等，推荐在 <html> 中添加 .borderbox 这个 class */
-html.borderbox *, html.borderbox *:before, html.borderbox *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
 body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
@@ -37,10 +29,15 @@ audio, canvas, video {
 }
 
 /* 要注意表单元素并不继承父级 font 的问题 */
-body, button, input, select, textarea {
-  font: 400 1em/2 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+button, input, select, textarea {
+  font: 400 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
 
 /* 去掉各Table cell 的边距并让其边重合 */
 table {
@@ -58,9 +55,9 @@ blockquote {
   position: relative;
   color: #999;
   font-weight: 400;
-  border-left: 1px solid #999;
+  border-left: 2px solid #1abc9c;
   padding-left: 1em;
-  margin: 1em 0;
+  margin: 1em 3em 1em 0;
 }
 
 @media only screen and ( max-width: 640px ) {
@@ -85,7 +82,7 @@ del {
   text-decoration: line-through;
 }
 
-address, caption, cite, code, dfn, em, th, var {
+address, caption, cite, code, dfn, th, var {
   font-style: normal;
   font-weight: 400;
 }
@@ -132,12 +129,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/* 下划线继承字体颜色 */
 .typo a {
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid;
 }
 
 .typo a:hover {
-  border-bottom-color: #555;
   color: #555;
   text-decoration: none;
 }
@@ -147,8 +144,13 @@ ins, a {
   text-decoration: none;
 }
 
-
-u {
+/* 专名号：虽然 u 已经重回 html5 Draft，但在所有浏览器中都是可以使用的，
+ * 要做到更好，向后兼容的话，添加 class="typo-u" 来显示专名号
+ * 关于 <u> 标签：http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-u-element
+ * 被放弃的是 4，之前一直搞错 http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
+ * 一篇关于 <u> 标签的很好文章：http://html5doctor.com/u-element/
+ */
+u, .typo-u {
   text-decoration: underline;
 }
 
@@ -160,23 +162,26 @@ mark {
   margin: 0 5px;
 }
 
+/* 行内代码 */
+p > code{
+  color: #a31515;
+}
+
 /* 代码片断 */
 pre code, pre tt {
   font-family: 'Source Code Pro', Courier, 'Courier New', monospace, PingFang SC;
-  padding: 0.5em;
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
+  padding: 1em;
   color: #383a42;
-  background: #fafafa;
 }
 
 pre {
-  background: #f8f8f8;
-  border: 1px solid #ddd;
+  background: #f1f1f1;
   display: block;
   overflow: auto;
   line-height: 1.3em;
+  border-radius: 4px;
 }
 
 /* 一致化 horizontal rule */
@@ -188,7 +193,7 @@ hr {
 }
 
 /* 底部印刷体、版本等标记 */
-small, .typo-small,
+small,
   /* 图片说明 */
 figcaption {
   font-size: 0.9em;
@@ -197,28 +202,12 @@ figcaption {
 
 strong, b {
   font-weight: bold;
-  letter-spacing: 1px;
-  text-align: justify;
-  color: rgb(12, 12, 12);
-  text-shadow: rgb(127, 127, 127) 2px 2px 10px;
+  color: #000;
 }
 
 /* 可拖动文件添加拖动手势 */
 [draggable] {
   cursor: move;
-}
-
-.clearfix:before, .clearfix:after {
-  content: "";
-  display: table;
-}
-
-.clearfix:after {
-  clear: both;
-}
-
-.clearfix {
-  zoom: 1;
 }
 
 /* 强制文本换行 */
@@ -237,12 +226,13 @@ strong, b {
 }
 
 /* 保证块/段落之间的空白隔行 */
-.typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table, blockquote {
-  margin-bottom: 1.5em
+.typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
+.typo blockquote {
+  margin-bottom: 1em;
+  line-height: 2em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
   font-weight: normal;
   color: #000;
   line-height: 1;
@@ -250,63 +240,72 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6 {
-  margin-top: .6em;
-  margin-bottom: 0.6em;
-  line-height: 1;
+  margin: 1em 0;
+  line-height: 1.6;
+}
+
+.typo>h1:first-of-type{
+  margin-top: 0;
 }
 
 .typo h1 {
   font-size: 2em;
+  border-bottom: 1px solid #d1d1d1;
 }
 
 .typo h2 {
-  font-size: 1.8em;
+  font-size: 1.5em;
+  border-bottom: 1px dotted #d1d1d1;
 }
 
 .typo h3 {
-  font-size: 1.6em;
+  font-size: 1.2em;
+  border-bottom: 1px dotted #d1d1d1;
 }
 
 .typo h4 {
-  font-size: 1.4em;
+  font-size: 1.1em;
 }
 
-.typo h5, .typo h6 {
-  font-size: 1.2em;
+.typo h5{
+  font-size: 1em;
+}
+
+.typo h6 {
+  font-size: 0.8em;
 }
 
 /* 在文章中，应该还原 ul 和 ol 的样式 */
-.typo ul{
+.typo ul {
   margin-left: 1.3em;
   list-style: disc;
 }
 
-.typo ol{
+.typo ol {
   list-style: decimal;
   margin-left: 1.9em;
 }
 
-.typo li ul, .typo li ol{
+.typo li ul, .typo li ol {
   margin-bottom: 0.8em;
   margin-left: 2em;
 }
 
-.typo li ul{
+.typo li ul {
   list-style: circle;
 }
 
-/* 同 ul/ol，在文章中应用 table 基本格式 */
-.typo table th, .typo table td, .typo table caption {
+/* 同 ul/ol，在文章中应用 table 基本格式，color 继承外层元素的颜色 */
+.typo table th, .typo table td {
   border: 1px solid #ddd;
   padding: 0.5em 1em;
-  color: #666;
 }
 
 .typo table th {
   background: #fbfbfb;
 }
 
-.typo table thead th{
+.typo table thead th {
   background: #f1f1f1;
 }
 
@@ -315,23 +314,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 去除 webkit 中 input 和 textarea 的默认样式  */
-.typo-textarea {
+.typo input, .typo textarea {
   -webkit-appearance: none;
   border-radius: 0;
 }
 
-.typo em, legend, caption {
+legend, caption {
   color: #000;
   font-weight: inherit;
 }
 
-/* Responsive images */
-.typo img { 
-  max-width: 100%;
-  display: inline-block;
+.typo em,
+.typo i {
+    font-style: italic;
 }
 
-.typo li input[type=checkbox]{
-  margin: 0 0.5em 0.25em -1.3em;
-  vertical-align: middle;
+/* Responsive images */
+.typo img {
+  max-width: 100%;
 }

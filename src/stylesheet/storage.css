@@ -1,0 +1,149 @@
+.storage{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.678);
+    z-index: -1;
+    transition: 500ms;
+}
+
+.storage--visible{
+    z-index: 1000;
+}
+
+.storage__sidebar{
+    width: 350px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #fff;
+    border-right:1px solid #ddd;
+    z-index: 2;
+    transform: translateX(-100%);
+    transition: 500ms;
+}
+
+.storage__sidebar--visible{
+    transform: translateX(0);
+}
+
+.storage__header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    height: 140px;
+    border-bottom: 1px solid #ddd;
+    z-index: 2;
+}
+
+.storage__header-title{
+    font-size: 18px;
+    padding: 10px 0;
+}
+
+.storage__header-warning{
+    margin-bottom: 5px;
+    font-size: 10px;
+    font-size: 12px;
+    color: #3dbe60;
+}
+
+.storage__header .btn{
+    margin: 0;
+    margin-right: 10px;
+}
+
+.storage__search{
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.storage__search-input{
+    position: relative;
+    background-color: transparent;
+    border: 1px solid #e1e1e1;
+    border-radius: 2px;
+    padding: 5px 10px;
+    margin: 0;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.storage__search-input:hover{
+	border-color: #c4c4c4;
+}
+
+.storage__list{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    padding-top: 140px;
+    padding-bottom: 40px;
+}
+
+.storage__list-inner{
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+
+.storage__list-item{
+	padding: 15px 20px 5px 20px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+.storage__list-item:hover{
+    background: #3DBE60;
+}
+
+.storage__list-item .date{
+    font-size: 11px;
+}
+.storage__list-item .text{
+    font-size: 14px;    
+}
+
+.storage__list-item-btns{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.storage__list-item .btn{
+    background: #fff;
+    color: #3D9E60;
+    visibility: hidden;
+    margin: 0;
+    float: right;
+    margin-right: 15px;
+}
+.storage__list-item .btn--danger{
+    background: #C62828;
+    color: #fff;
+}
+
+
+.storage__list-item:hover .btn{
+    visibility: visible;
+}
+
+.storage__list-footer{
+    padding: 5px 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #3dbe60;
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+}

@@ -1,0 +1,29 @@
+
+@media print {
+    body{
+        height: initial;
+    }
+    .edit-window{
+        display: none;
+    }
+    .storage{
+        display: none;
+    }
+    .preview-box .content {
+        padding: 0!important;
+    }
+    .view-window{
+        position: static;
+        background: #fff;
+        overflow: auto;
+
+        width: 100%;
+        height: initial;
+    }
+    .preview-box{
+        padding: 0;
+    }
+    .tool-bar{
+        display: none;
+    }
+}

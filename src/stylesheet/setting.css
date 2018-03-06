@@ -1,0 +1,64 @@
+.setting{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.setting__panel{
+    width: 400px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.setting__title{
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.setting__item{
+    margin: 10px 0;
+}
+
+.setting__item label{
+    display: block;
+}
+
+.setting__item input{
+    display: block;
+    width: 100%;
+    outline: none;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.setting__item .setting__item-domain{
+    position: relative;
+}
+
+.setting__item .setting__item-domain input{
+    padding-left: 50px;
+}
+
+.setting__item .setting__item-domain::after{
+    content: 'http://';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    line-height: 33px;
+}
+
+.setting__item input:focus{
+    outline: 1px solid #3DBE60;
+}
+
+.setting__panel .btn{
+    margin-bottom: 0;
+}

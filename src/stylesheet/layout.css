@@ -1,0 +1,142 @@
+html{
+	height: 100%;
+    font-size: 14px;
+}
+
+body{
+    position: relative;
+
+	width: 100%;
+	height: 100%;
+	color: #444;
+}
+
+.md-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.edit-window,
+.view-window{
+    position: absolute;
+    top: 0;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+    width: 50%;
+	height: 100%;
+}
+.edit-window{
+    left: 0;
+
+	border-right: 1px solid #ccc;
+}
+.view-window{
+    right: 0;
+}
+
+.edit-box,
+.preview-box{
+    box-sizing: border-box;
+    height: 100%;
+	padding-top: 40px;
+}
+
+.edit-window .editor-container{
+	width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.edit-window textarea{
+    width: 100%;
+	height: 100%;
+    background: transparent;
+    resize: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+	color: #444;
+	border: 0;
+	outline: medium;
+}
+.edit-window .text-editor{
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    line-height: 2em;
+    box-sizing: border-box;
+    background: #fafafa;
+}
+
+.preview-box .content{
+    box-sizing:border-box;
+    padding: 0 10px;
+    font-size: 14px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.tool-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    margin: 0 1px;
+
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+    line-height: 40px;
+
+    z-index: 1;
+}
+.tool-bar a{
+    padding-left: 20px;
+}
+
+.tool-bar .btn{
+    float: right;
+    margin-top: 9px;
+}
+
+.tool-bar__text{
+    float: right;
+    margin:9px 10px;
+    padding: 5px 8px;
+    font-size: 12px;
+    line-height: 1em;
+}
+
+
+
+.fullscreen-edit .edit-window{
+	width: 100%;
+}
+
+.fullscreen-edit .view-window{
+	display: none;
+}
+
+.fullscreen-preview .view-window{
+	width: 100%;
+}
+
+.fullscreen-preview .edit-window{
+	display: none;
+}
+
+
+.img-description {
+    display: block;
+    margin: auto;
+    text-align: center;
+    text-decoration: underline;
+    font-style: italic;
+    margin-top: 10px; 
+}

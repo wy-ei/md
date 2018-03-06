@@ -1,0 +1,33 @@
+.btn{
+    display: inline-block;
+    margin-right: 20px;
+    padding: 5px 8px;
+    border: none;
+
+    cursor: pointer;
+    transition: color .5s;
+
+	color: #fff;
+    border-radius: 2px;
+    background: #3DBE60;
+
+    outline: none;
+
+    font-size: 12px;
+    line-height: 1em;
+}
+.btn:hover{
+    background: #3D9E60;
+}
+
+.btn--danger{
+    background-color: #C62828;
+}
+.btn--danger:hover{
+    background-color: rgba(198, 40, 40, 0.7);
+}
+
+.btn--disable{
+    opacity: 0.5;
+    cursor: no-drop;
+}

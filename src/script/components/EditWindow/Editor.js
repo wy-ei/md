@@ -62,9 +62,6 @@ class Editor extends Component{
             var editor = monaco.editor.create(document.getElementById('editor'), {
                 value: _this.props.content,
                 language: 'markdown',
-                minimap: {
-                    enabled: false
-                },
                 lineHeight: 28,
                 wordWrap: "on",
 

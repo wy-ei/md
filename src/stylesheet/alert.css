@@ -1,0 +1,36 @@
+
+/* Alert */
+.alert{
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.alert__box{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.alert__content{
+    padding: 30px 20px;
+}
+
+.alert__footer{
+    border-top: 1px solid #ddd;
+    padding: 8px 0px;
+    overflow: hidden;
+}
+
+.alert__footer .btn{
+    float: right;
+}

@@ -1,8 +1,7 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import Md from "./components/Md";
-import "../stylesheet/default.css";
-import "../stylesheet/typo.css";
+import "../stylesheet/index.css";
 
 window.MD = {};
 
