@@ -163,7 +163,7 @@ mark {
 }
 
 /* 行内代码 */
-p > code{
+code {
   color: #a31515;
 }
 

@@ -21,8 +21,8 @@ class PreviewWindow extends Component{
         }
     }
 
-    shouldComponentUpdate(){
-        let {fullscreenEdit} = this.props;
+    shouldComponentUpdate(nextProps){
+        let {fullscreenEdit} = nextProps;
         return !fullscreenEdit;
     }
 
