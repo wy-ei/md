@@ -21,12 +21,12 @@ class List extends Component{
     render(){
         let {list, className} = this.props;
         let content = list.map((item,index,list) => {
-            
-            let newlineIndex = item.content.indexOf('\n');
+            let head = item.content.slice(0, 100).trim();
+            let newlineIndex = head.indexOf('\n');
             if(newlineIndex === -1){
-                newlineIndex = Math.min(20, item.content.length);
+                newlineIndex = 20;
             }
-            let excerpt = item.content.slice(0, Math.min(newlineIndex, 20));
+            let excerpt = head.slice(0, Math.min(newlineIndex, 20));
             
             return (
             <li key={item.date} className="storage__list-item">

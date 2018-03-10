@@ -64,15 +64,14 @@ class Editor extends Component{
                 language: 'markdown',
                 lineHeight: 28,
                 wordWrap: "on",
-                folding: true,
                 theme: 'md',
                 contextmenu: false,
                 scrollBeyondLastLine: false,
                 fontFamily: 'Source Code Pro, PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans',
                 scrollbar: {
                     useShadows: false
-                }
-                // lineNumbers: 'off'
+                },
+                lineNumbers: 'off'
             });
 
             _this.editor = editor;

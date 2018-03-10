@@ -1,10 +1,10 @@
-import React,{Component} from "react";
+import React,{PureComponent} from "react";
 import ep from "../../utils/ep";
 
 let Chart = null;
 
 
-class CodeBlock extends React.PureComponent {
+class CodeBlock extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -42,7 +42,7 @@ class CodeBlock extends React.PureComponent {
             let data = null;
             let dataParseError = false;
             try{
-                data = JSON.parse(value);
+                data = eval('data=' + value);
             }catch(e){
                 data = null;
                 dataParseError = true;

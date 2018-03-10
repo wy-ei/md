@@ -5,6 +5,7 @@ import Alert from "../utils/Alert";
 import Button from "./Button";
 import message from "../utils/message";
 
+
 const STORAGE_PREFIX = 'markdown-';
 const STORAGE_PREFIX_REGEX = /markdown-\d+$/;
 
@@ -20,6 +21,7 @@ class StorageList extends Component{
         this.addEventListener();
 
         this.timer = null;
+        this.content = '';
     }
 
     componentWillUnmount(){
@@ -74,6 +76,7 @@ class StorageList extends Component{
 
         ep.on("storage:save", (content) => {
             let LS = window.localStorage;
+            this.content = content;
             localStorage.setItem('markdown-text', content);
         });
     }
@@ -138,6 +141,14 @@ class StorageList extends Component{
         let text = LS.getItem('markdown-text');
         if(text){
             ep.emit('content:replace', [text]);
+        }else{
+            fetch('./README.md')
+            .then(res => res.text())
+            .then(text => {
+                if(!this.content){
+                    ep.emit('content:replace', [text]);
+                }
+            }); 
         }
     }
 
@@ -179,7 +190,7 @@ class StorageList extends Component{
                 >
                     <header className="storage__header">
                         <div className="storage__header-title">暂存列表</div>
-                        <p className="storage__header-warning">注意：所有数据均存储在本地浏览器中，清除浏览器记录、更换浏览器都会导致数据丢失，此工具系作者日常编辑预览 Markdown 所有，不保证可靠性。</p>
+                        <p className="storage__header-warning">注意：所有数据均存储在本地浏览器中，清除浏览器记录、更换浏览器都会导致数据丢失，请谨慎操作。</p>
                         {/* <div className="storage__search">
                             <input className="storage__search-input" />
                         </div> */}

@@ -43,6 +43,7 @@ input::-moz-focus-inner {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
 }
 
 /* 去除默认边框 */
@@ -228,7 +229,7 @@ strong, b {
 /* 保证块/段落之间的空白隔行 */
 .typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
 .typo blockquote {
-  margin-bottom: 1em;
+  margin: 1em 0;
   line-height: 2em;
 }
 
@@ -249,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .typo h1 {
-  font-size: 2em;
+  font-size: 1.8em;
   border-bottom: 1px solid #d1d1d1;
 }
 
@@ -315,7 +316,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 去除 webkit 中 input 和 textarea 的默认样式  */
 .typo input, .typo textarea {
-  -webkit-appearance: none;
   border-radius: 0;
 }
 
@@ -333,3 +333,10 @@ legend, caption {
 .typo img {
   max-width: 100%;
 }
+
+.typo input[type="checkbox"]{
+  margin: 0 0.3em 0.25em -1.4em;
+  vertical-align: middle;
+}
+
+

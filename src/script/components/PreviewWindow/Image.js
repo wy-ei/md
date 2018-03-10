@@ -1,7 +1,7 @@
-import React,{Component} from "react";
+import React,{PureComponent} from "react";
 
 
-class Image extends React.PureComponent {
+class Image extends PureComponent {
     render(){
         let {alt, src} = this.props;
         let style = {};

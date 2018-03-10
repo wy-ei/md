@@ -1,0 +1,11 @@
+.language-chart{
+    max-width: 800px;
+    margin: 2em auto;    
+}
+
+.katex--error{
+    border: 2px solid #F44336;
+    display: block;
+    text-align: center;
+    color: #f44336;
+}
