@@ -7,16 +7,19 @@ class Text extends PureComponent{
 
         let rBlockMath = /\$\$([\s\S]*?)\$\$/gm;
         let rInlineMath = /\$([\s\S]+?)\$/mg;
+
+        // block Tex command
         let match = rBlockMath.exec(text);
         if(match){
             let content = match[1].trim();
             return <Tex block={true} content={content}/>
         }
 
+        // inline Tex command
         match = rInlineMath.exec(text);
         if(match){
             let lastIndex = 0;
-            let content = []
+            let content = [];
             while(match){
                 content.push(text.slice(lastIndex, match.index));
                 content.push(

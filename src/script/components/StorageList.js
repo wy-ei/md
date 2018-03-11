@@ -142,7 +142,7 @@ class StorageList extends Component{
         if(text){
             ep.emit('content:replace', [text]);
         }else{
-            fetch('./README.md')
+            fetch('./src/description.md')
             .then(res => res.text())
             .then(text => {
                 if(!this.content){

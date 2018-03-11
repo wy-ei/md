@@ -12,7 +12,6 @@ let theme = {
     }
 };
 
-window.require.config({ paths: { 'vs': 'https://cdn.bootcss.com/monaco-editor/0.10.1/min/vs'}});
 
 window.MonacoEnvironment = {
     getWorkerUrl: function(workerId, label) {
@@ -80,7 +79,6 @@ class Editor extends Component{
                 let value = editor.getValue();
                 _this.props.onContentChange(value);            
             });
-            ep.emit("codeblock:highlight");
         });
     }
 
