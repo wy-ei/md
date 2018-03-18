@@ -54,9 +54,9 @@ fieldset, img {
 /* 块/段落引用 */
 blockquote {
   position: relative;
-  color: #999;
+  color: #888;
   font-weight: 400;
-  border-left: 2px solid #1abc9c;
+  border-left: 2px solid;
   padding-left: 1em;
   margin: 1em 3em 1em 0;
 }
@@ -197,8 +197,8 @@ hr {
 small,
   /* 图片说明 */
 figcaption {
-  font-size: 0.9em;
-  color: #888;
+  font-size: 0.8em;
+  color: #444;
 }
 
 strong, b {

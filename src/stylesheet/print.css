@@ -26,4 +26,8 @@
     .tool-bar{
         display: none;
     }
+
+    .typo .a{
+        color: inherit!important;
+    }
 }
