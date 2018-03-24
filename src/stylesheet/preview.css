@@ -3,9 +3,16 @@
     margin: 2em auto;    
 }
 
+
 .katex--error{
     border: 2px solid #F44336;
     display: block;
     text-align: center;
     color: #f44336;
+}
+
+
+.typo p img:only-of-type{
+    display: block;
+    margin: auto;
 }

@@ -33,12 +33,6 @@ button, input, select, textarea {
   font: 400 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
 }
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
 /* 去掉各Table cell 的边距并让其边重合 */
 table {
   border-collapse: collapse;
@@ -165,12 +159,12 @@ mark {
 
 /* 行内代码 */
 code {
+  font-family: 'Source Code Pro', Courier, 'Courier New', monospace, PingFang SC;
   color: #a31515;
 }
 
 /* 代码片断 */
 pre code, pre tt {
-  font-family: 'Source Code Pro', Courier, 'Courier New', monospace, PingFang SC;
   display: block;
   overflow-x: auto;
   padding: 1em;
@@ -260,12 +254,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .typo h3 {
-  font-size: 1.2em;
+  font-size: 1.3em;
   border-bottom: 1px dotted #d1d1d1;
 }
 
 .typo h4 {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .typo h5{
@@ -287,9 +281,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 1.9em;
 }
 
+/*多级列表，子列表不应该和父列表项隔得太远*/
 .typo li ul, .typo li ol {
-  margin-bottom: 0.8em;
-  margin-left: 2em;
+  margin: 0 0 0 2em;
 }
 
 .typo li ul {

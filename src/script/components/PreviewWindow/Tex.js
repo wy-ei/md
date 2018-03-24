@@ -13,14 +13,14 @@ class Tex extends PureComponent {
             LazyLoad.css('https://cdn.bootcss.com/KaTeX/0.9.0/katex.min.css')
             window.require(['https://cdn.bootcss.com/KaTeX/0.9.0/katex.min.js'], (_katex) => {
                 katex = _katex;
-                ep.emit('katex:update');
+                ep.emit('katex:loaded');
             });
         }
     }
     
     componentDidMount(){
         if(!katex){
-            ep.once('katex:update', () => this.forceUpdate());
+            ep.once('katex:loaded', () => this.forceUpdate());
         }
     }
 

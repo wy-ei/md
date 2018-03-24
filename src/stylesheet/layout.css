@@ -130,13 +130,3 @@ body{
 .fullscreen-preview .edit-window{
 	display: none;
 }
-
-
-.img-description {
-    display: block;
-    margin: auto;
-    text-align: center;
-    text-decoration: underline;
-    font-style: italic;
-    margin-top: 10px; 
-}
