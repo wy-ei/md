@@ -159,7 +159,7 @@ mark {
 
 /* 行内代码 */
 code {
-  font-family: 'Source Code Pro', Courier, 'Courier New', monospace, PingFang SC;
+  font-family: 'Source Code Pro', Courier, 'Courier New', monospace;
   color: #a31515;
 }
 

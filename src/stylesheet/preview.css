@@ -1,3 +1,16 @@
+.preview-box {
+    font-size: 14px;
+}
+
+.preview-box .content{
+    box-sizing:border-box;
+    padding: 0 10px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+
 .language-chart{
     max-width: 800px;
     margin: 2em auto;    
