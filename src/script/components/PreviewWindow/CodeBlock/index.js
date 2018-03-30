@@ -1,6 +1,7 @@
 import React,{PureComponent} from "react";
 import Chart from "./Chart";
 import Code from "./Code";
+import Tex from "../Tex";
 
 
 class CodeBlock extends PureComponent {
@@ -16,7 +17,10 @@ class CodeBlock extends PureComponent {
 
         if(language === 'chart'){
             return <Chart data={value} />
-        }else{
+        }else if(language === 'tex'){
+            return <Tex block={true} content={value}/>
+        }
+        else{
             return <Code code={value} language={language} />
         }
     }

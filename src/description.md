@@ -26,9 +26,15 @@
 
 ### 3. 编写公式
 
-使用 [KaTeX](https://khan.github.io/KaTeX/) 渲染数学公式，行内公式：$a+b = c$，块状公式：
+使用 [KaTeX](https://khan.github.io/KaTeX/) 渲染数学公式。
 
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+行内公式：将 Tex 放置在行内代码块中，如 `$a+b = c$`，为了标识这是一个公式，需要在前后加上 `$` 符号。
+
+块状公式：
+
+```tex
+x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
+```
 
 ### 4. 代码高亮
 
