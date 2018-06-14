@@ -2,6 +2,8 @@
 @media print {
     body{
         height: initial;
+        orphans: 1;
+        widows: 1;
     }
     .edit-window{
         display: none;

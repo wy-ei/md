@@ -12,8 +12,29 @@ class PreviewWindow extends Component{
         this.state = {
             fontSize: 14
         }
+
+        this.hx = []
+
+        this.addEventListener()
     }
 
+    addEventListener(){
+        ep.on('heading:discover', (item) => {
+            this.hx.push(item);
+        });
+
+        ep.on('heading:clear', () => {
+            this.hx = []
+        });
+    }
+
+    componentWillUpdate(){
+        ep.emit('heading:clear');
+    }
+
+    componentDidUpdate(){
+        ep.emit('toc:render', [this.hx])
+    }
 
     toggleFullscreenPreview(){
         let {fullscreenPreview} = this.props;
@@ -29,7 +50,7 @@ class PreviewWindow extends Component{
         if(fontSize < 16){
             fontSize += 1;
         }else{
-            fontSize = 10
+            fontSize = 12
         }
         this.setState({fontSize});
     }
@@ -58,6 +79,7 @@ class PreviewWindow extends Component{
                 </header>
                 <div
                     className='preview-box'
+                    id="js-preview-box"
                     style={{
                         fontSize: fontSize + 'px'
                     }}

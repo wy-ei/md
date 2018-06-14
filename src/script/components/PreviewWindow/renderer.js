@@ -1,7 +1,8 @@
 import React from "react";
 import CodeBlock from "./CodeBlock/";
 import Tex from "./Tex";
-
+import TOC from "./TOC"
+import Heading from './Heading'
 
 let renderer = {
     code: CodeBlock,
@@ -14,8 +15,16 @@ let renderer = {
             let content = match[1].trim();
             return <Tex block={false} content={content}/>
         }
+
+
+        let rTOC = /__TOC__/
+        if (rTOC.test(props.value)){
+            return <TOC />
+        }
+
         return <code>{props.value}</code>;
-    }
+    },
+    heading: Heading
 }
 
 export default renderer;

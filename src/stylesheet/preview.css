@@ -29,3 +29,20 @@
     display: block;
     margin: auto;
 }
+
+
+.catalogue-level-1{
+    padding-left: 20px;
+}
+.catalogue-level-2{
+    padding-left: 40px;
+    list-style-type: circle;
+}
+.catalogue-level-3{
+    padding-left: 60px;
+    list-style-type: square;
+}
+.catalogue-level-4{
+    padding-left: 80px;
+    list-style-type: circle;
+}

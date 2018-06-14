@@ -48,7 +48,9 @@ class Chart extends PureComponent {
             data = this.parseData(data);
             if(data){
                 let cxt = this.canvas.getContext('2d');
-                this.chart = new ChartJS(cxt, data);
+                try{
+                    this.chart = new ChartJS(cxt, data);                    
+                }catch(e){}
             }
         }
     }

@@ -75,10 +75,11 @@ class EditWindow extends Component{
         return (
             <section className='edit-window'>
                 <header className='tool-bar'>
-                    <a href='https://github.com/wy-ei/md'>MD</a>
+                    <a href='https://github.com/wy-ei/md' className="brand">MD</a>
                     <Button text={ fullscreenEdit ? "退出全屏":"全屏编辑" } onClick={() => this.toggleFullscreenEdit()}/>
                     <Button text="新增暂存" onClick={() => this.add()} />
                     <Button text="查看暂存" onClick={() => this.showStoreList()}/>
+                    <a href="https://jiantuku.com/#/" className="btn">上传图片</a>
                     <span className="tool-bar__text">{ content.length } 字</span>
                 </header>
                 <div className='edit-box'>

@@ -88,8 +88,8 @@ body{
 
     z-index: 1;
 }
-.tool-bar a{
-    padding-left: 20px;
+.tool-bar .brand{
+    padding-left: 10px;
 }
 
 .tool-bar .btn{
