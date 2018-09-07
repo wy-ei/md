@@ -6,6 +6,43 @@ import ep from "../../utils/ep";
 import renderer from './renderer';
 
 
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false };
+
+        this.errorMessage = ''
+    }
+
+    componentDidCatch(error, info) {
+        this.errorMessage = error.message.split('\n')[0];
+        this.setState({ hasError: true });
+        
+    }
+
+    componentWillReceiveProps(){
+        this.setState({hasError: false });
+    }
+
+
+    render() {
+        if (this.state.hasError) {
+            // You can render any custom fallback UI
+            return (
+                <div className="content typo">
+                    <h4>Markdown 格式有误！错误信息如下：</h4>
+                    <pre>
+                        <code>{this.errorMessage}</code>
+                    </pre>
+                    
+                </div>)
+        }else{
+            return this.props.children;
+        }
+    }
+}
+
+
 class PreviewWindow extends Component{
     constructor(props){
         super();
@@ -84,13 +121,15 @@ class PreviewWindow extends Component{
                         fontSize: fontSize + 'px'
                     }}
                 >
-                    <Markdown
-                        source={content}
-                        className="content typo"
-                        renderers={renderer}
-                        escapeHtml={false}
-                        vScrollBarAlwaysVisible={true}
-                    />
+                    <ErrorBoundary>
+                        <Markdown
+                            source={content}
+                            className="content typo"
+                            renderers={renderer}
+                            escapeHtml={false}
+                            vScrollBarAlwaysVisible={true}
+                        />
+                    </ErrorBoundary>
                 </div>
             </section>
         )
