@@ -10,8 +10,8 @@ class Tex extends PureComponent {
         super();
         if(!window.katex && !loading){
             loading = true;
-            LazyLoad.css('https://cdn.bootcss.com/KaTeX/0.9.0/katex.min.css')
-            window.require(['https://cdn.bootcss.com/KaTeX/0.9.0/katex.min.js'], (_katex) => {
+            LazyLoad.css('https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css')
+            window.require(['https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js'], (_katex) => {
                 katex = _katex;
                 ep.emit('katex:loaded');
             });

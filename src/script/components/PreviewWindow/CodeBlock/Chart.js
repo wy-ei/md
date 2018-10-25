@@ -40,7 +40,7 @@ class Chart extends PureComponent {
     draw(){
         let {data} = this.props;
         if(!ChartJS){
-            window.require(['https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.js'], (_) => {
+            window.require(['https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js'], (_) => {
                 ChartJS = _;
                 this.draw();
             });

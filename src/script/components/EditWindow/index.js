@@ -79,7 +79,7 @@ class EditWindow extends Component{
                     <Button text={ fullscreenEdit ? "退出全屏":"全屏编辑" } onClick={() => this.toggleFullscreenEdit()}/>
                     <Button text="新增暂存" onClick={() => this.add()} />
                     <Button text="查看暂存" onClick={() => this.showStoreList()}/>
-                    <a href="https://jiantuku.com/#/" className="btn">上传图片</a>
+                    <a target="_blank" href="https://jiantuku.com/#/" className="btn">上传图片</a>
                     <span className="tool-bar__text">{ content.length } 字</span>
                 </header>
                 <div className='edit-box'>

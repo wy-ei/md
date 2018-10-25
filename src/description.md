@@ -2,8 +2,6 @@
 
 一个轻量的 markdown 编辑器: [https://wy-ei.github.io/md](https://wy-ei.github.io/md)
 
-<img src="http://7xs1gu.com1.z0.glb.clouddn.com/18-3-10/1361618.jpg" style="display:block;margin:auto;" >
-
 
 本项目最早开始于 2015 年，那时候只是为了生成自己的简历。使用 markdown 编辑，并自定义 HTML 样式，随后使用浏览器自带打印功能打印为 PDF。随后不断增强和重写，目的在于增强编辑体验，优化预览样式，现在我用它：
 
