@@ -1,0 +1,30 @@
+@import './typo.css';
+@import './print.css';
+
+.view-container{
+    font-size: 14px;
+    padding: 50px 0;
+}
+
+.wrap {
+    margin: auto;
+    width: 900px
+}
+
+@media screen and (max-width: 1400px) {
+    .wrap {
+        width:70%
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .wrap {
+        width:80%
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrap {
+        width:95%
+    }
+}
