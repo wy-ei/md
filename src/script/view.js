@@ -2,7 +2,6 @@ import ReactDOM from "react-dom";
 import React,{Component} from "react";
 import renderer from "./components/PreviewWindow/renderer";
 const Markdown = require('react-markdown')
-import ep from "./utils/ep";
 import "../stylesheet/view.css";
 
 class View extends Component{
@@ -11,28 +10,37 @@ class View extends Component{
         this.state = {
             content: ""
         }
-        this.addEventListener();
     }
 
-    addEventListener(){
-        ep.any(['content:update', 'content:replace'], (content)=>{
-            this.setState({
-                content: content
-            });
-        });
-
+    convert_images_url(page_url){
+        let path = page_url.substring(0, page_url.lastIndexOf('/') + 1);
+        let imgs = document.querySelectorAll('.view-container img');
+        console.log(imgs)
+        for(let i = 0, len = imgs.length; i < len; i++){
+            let img = imgs[i];
+            let src = img.getAttribute('src');
+            if(!src.match(/^http/)){
+                img.setAttribute('src', path + src);
+            }
+        }
     }
 
     componentDidMount(){
-        let url = new URLSearchParams(location.search).get('url');
-        if(url){
-            fetch(url).then(res => res.text()).then(text => ep.emit('content:update', text));
+        let url = new URL(location.href);
+        let md_url = url.searchParams.get('url');
+        if(md_url){
+            fetch(md_url).then(res => res.text()).then(text => {
+                this.setState({
+                    content: text
+                }, () => {
+                    this.convert_images_url(md_url);
+                });
+            });
         }
     }
 
     render(){
         let {content} = this.state;
-
 
         return (
             <div className="view-container wrap">
