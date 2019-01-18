@@ -18,13 +18,29 @@ class Code extends PureComponent {
 
 
     highlight(){
-        if(window.Prism){
-            Prism.highlightElement(this.code);
+        // if(window.Prism){
+        //     try{
+        //         Prism.highlightElement(this.code);
+        //     }catch(e){}
+        // }else{
+        //     LazyLoad.css(['https://cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.css'])
+        //     window.require(['https://cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js'], () => {
+        //         window.require(['https://cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/autoloader/prism-autoloader.min.js'],()=>{
+        //             Prism.plugins.autoloader.languages_path = 'https://cdn.jsdelivr.net/npm/prismjs@1.15.0/components/';
+        //             this.highlight();
+        //         });
+        //     });
+        // }
+        if(window.monaco){
+            let firstChild = this.code && this.code.firstChild;
+            if(firstChild && firstChild.nodeValue && firstChild.nodeValue.trim()){
+                try{
+                    window.monaco && monaco.editor.colorizeElement(this.code, {tableSize: 4});
+                }catch(err){}
+            }
         }else{
-            LazyLoad.css(['https://cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism.css'])
-            window.require(['https://cdn.jsdelivr.net/npm/prismjs@1.15.0/prism.min.js', 'https://cdn.jsdelivr.net/npm/prismjs@1.15.0/plugins/autoloader/prism-autoloader.min.js'], () => {
-                Prism.plugins.autoloader.languages_path = 'https://cdn.jsdelivr.net/npm/prismjs@1.15.0/components/';
-                this.highlight();
+            window.require(['vs/editor/editor.main'], () => {
+                this.highlight();            
             });
         }
     }
@@ -35,7 +51,7 @@ class Code extends PureComponent {
         let {code, language} = this.props;
 
         return (
-            <pre>
+            <pre className="code-block">
                 <code
                     ref={ref=>this.code = ref}
                     data-lang={language}
