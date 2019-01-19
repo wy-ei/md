@@ -29,7 +29,7 @@
 }
 
 .typo p img:only-of-type{
-    display: block;
+    vertical-align: middle;
     margin: auto;
 }
 
