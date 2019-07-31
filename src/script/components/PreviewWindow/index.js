@@ -57,10 +57,14 @@ class PreviewWindow extends Component{
 
     addEventListener(){
         ep.on('heading:discover', (item) => {
+            if(this.hx.length == 0){
+                document.title = item.text;
+            }
             this.hx.push(item);
         });
 
         ep.on('heading:clear', () => {
+            document.title = 'MD | markdown 编辑器';
             this.hx = []
         });
     }

@@ -67,6 +67,25 @@ class EditWindow extends Component{
         ep.emit('storage:add', [this.state.content]);
     }
 
+    download(){
+        let filename = prompt('please enter filename:', 'example.md')
+        if(!filename){
+            return;
+        }
+
+        let a = document.createElement('a');
+        a.download = filename;
+        a.style.display = 'none';
+        // 字符内容转变成blob地址
+        let blob = new Blob([this.state.content]);
+        a.href = URL.createObjectURL(blob);
+        // 触发点击
+        document.body.appendChild(a);
+        a.click();
+        // 然后移除
+        document.body.removeChild(a);
+    }
+
     render(){
         let {fullscreenEdit} = this.props;
         let {content} = this.state;
@@ -79,7 +98,7 @@ class EditWindow extends Component{
                     <Button text={ fullscreenEdit ? "退出全屏":"全屏编辑" } onClick={() => this.toggleFullscreenEdit()}/>
                     <Button text="新增暂存" onClick={() => this.add()} />
                     <Button text="查看暂存" onClick={() => this.showStoreList()}/>
-                    <a href="https://jiantuku.com/#/" className="btn">上传图片</a>
+                    <Button text="导出" onClick={() => this.download()} />
                     <span className="tool-bar__text">{ content.length } 字</span>
                 </header>
                 <div className='edit-box'>

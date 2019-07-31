@@ -26,10 +26,10 @@ class Heading extends PureComponent {
 
         let innerText = this.getInnerText(children);
         let anchorText = innerText.replace(/\s/g, '-');
-        let anchor = null;
+        // let anchor = null;
 
         if(level < 5){
-            anchor = <a name={anchorText}></a>
+            // anchor = <a name={anchorText}></a>
             ep.emit('heading:discover', {
                 level: level,
                 anchorText: anchorText,
