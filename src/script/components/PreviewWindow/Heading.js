@@ -1,6 +1,7 @@
 import React,{PureComponent} from "react";
 import ep from "../../utils/ep";
 
+const seen_slug = {}
 
 class Heading extends PureComponent {
     constructor(props){
@@ -8,6 +9,27 @@ class Heading extends PureComponent {
         this.id = Math.random()
     }
     
+
+    slug(value) {
+        let slug = value
+            .toLowerCase()
+            .trim()
+            .split(' ').join('-')
+            .split(/[\|\$&`~=\\\/@+*!?\(\{\[\]\}\)<>=.,;:'"^。？！，、；：“”【】（）〔〕［］﹃﹄“”‘’﹁﹂—…－～《》〈〉「」]/g).join('')
+            .replace(/\t/, '--');
+      
+        if (seen_slug.hasOwnProperty(slug)) {
+          var original_slug = slug;
+          do {
+            seen_slug[original_slug]++;
+            slug = original_slug + '-' + seen_slug[original_slug];
+          } while (seen_slug.hasOwnProperty(slug));
+        }
+        seen_slug[slug] = 0;
+      
+        return slug;
+    };
+
     getInnerText(children){
         let text = []
         React.Children.forEach(children, (child) => {

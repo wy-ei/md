@@ -9,8 +9,6 @@
     overflow-y: auto;
 }
 
-
-
 .language-chart{
     max-width: 800px;
     margin: 2em auto;    
@@ -24,9 +22,14 @@
     color: #f44336;
 }
 
+.preview-box .content .code-block{
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    line-height: 1.8em;
+}
 
 .typo p img:only-of-type{
-    display: block;
+    vertical-align: middle;
     margin: auto;
 }
 

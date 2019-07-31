@@ -5,7 +5,7 @@ import "../stylesheet/index.css";
 
 window.require.config({
     paths: {
-        'vs': 'https://cdn.bootcss.com/monaco-editor/0.10.1/min/vs'
+        'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.15.6/min/vs'
     }
 });
 

@@ -19,6 +19,8 @@ class TOC extends Component {
 
 
     render(){
+        ep.emit('toc:start');
+
         let hx = this.hx;
         
 

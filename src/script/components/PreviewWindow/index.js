@@ -5,7 +5,6 @@ import {LAYOUT} from "../Md";
 import ep from "../../utils/ep";
 import renderer from './renderer';
 
-
 class ErrorBoundary extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +49,8 @@ class PreviewWindow extends Component{
             fontSize: 14
         }
 
-        this.hx = []
+        this.hx = [];
+        this.toc = false;
 
         this.addEventListener()
     }

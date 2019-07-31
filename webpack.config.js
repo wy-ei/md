@@ -9,7 +9,7 @@ const DEV = 'development';
 let mode = PROD;
 
 let plugins = [
-    new ExtractTextPlugin("styles.css")
+    new ExtractTextPlugin("style.css")
 ];
 
 
@@ -22,10 +22,12 @@ if(mode == 'production'){
 }
 
 module.exports = {
-    entry: './src/script/index.js',
+    entry: {
+        md: './src/script/md.js'
+    },
     output: {
         path: path.resolve(__dirname, "build"),
-        filename: 'bundle.js'
+        filename: '[name].js'
 
     },
     module: {

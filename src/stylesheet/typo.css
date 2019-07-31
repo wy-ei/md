@@ -171,14 +171,6 @@ pre code, pre tt {
   color: #383a42;
 }
 
-pre {
-  background: #f1f1f1;
-  display: block;
-  overflow: auto;
-  line-height: 1.3em;
-  border-radius: 4px;
-}
-
 /* 一致化 horizontal rule */
 hr {
   border: none;
@@ -333,4 +325,11 @@ legend, caption {
   vertical-align: middle;
 }
 
-
+.typo pre[class*="language-"] {
+  background: #f1f1f1;
+  display: block;
+  overflow: auto;
+  line-height: 1.3em;
+  border-radius: 4px;
+  padding: 0;
+}
